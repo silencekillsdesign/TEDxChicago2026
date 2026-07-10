@@ -251,18 +251,7 @@
   const renderSpeakerCards = () => {
     const track = document.getElementById("speakerTrack");
     if (!track) return;
-    track.innerHTML = SPEAKERS.map((sp, i) => {
-      const tagline = sp.tags.length
-        ? (() => {
-            const unit = sp.tags.map((t) => escapeHtml(t.toUpperCase())).join("&ensp;&bull;&ensp;") + "&ensp;&bull;&ensp;";
-            return `<div class="poster-tagline" aria-hidden="true">
-              <div class="poster-tagline-track">
-                <span>${unit}</span><span>${unit}</span>
-              </div>
-            </div>`;
-          })()
-        : "";
-      return `
+    track.innerHTML = SPEAKERS.map((sp, i) => `
       <article class="speaker-card${i % 2 ? " alt" : ""}" data-speaker-id="${sp.id}"
                 tabindex="0" role="button" aria-haspopup="dialog"
                 aria-label="Read full bio for ${escapeHtml(sp.name)}">
@@ -271,17 +260,16 @@
           <div class="portrait" aria-hidden="true">
             <svg viewBox="0 0 200 240"><circle cx="100" cy="86" r="46"/><path d="M100 142 c-52 0 -76 38 -76 98 h152 c0 -60 -24 -98 -76 -98z"/></svg>
           </div>
-          ${tagline}
+          <span class="poster-brand">TED<sup>x</sup><em>Chicago</em></span>
           <h3 class="speaker-name">${sp.nameLines.map(escapeHtml).join("<br>")}</h3>
-          <span class="poster-cta" data-speaker-trigger>Read Bio</span>
         </div>
         <div class="speaker-info">
           <p class="speaker-role">${escapeHtml(sp.role)}</p>
           <p class="speaker-topic">${escapeHtml(sp.idea || "Talk details coming soon.")}</p>
+          <span class="btn btn-line" data-speaker-trigger>Read Bio</span>
         </div>
       </article>
-    `;
-    }).join("");
+    `).join("");
   };
   renderSpeakerCards();
 
