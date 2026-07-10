@@ -530,7 +530,7 @@ sup { font-size: 0.55em; }
 .hero-title { margin: 0; }
 .hero-lockup {
   display: block;
-  width: clamp(230px, 30vw, 360px);
+  width: clamp(280px, 46vw, 560px);
   height: auto;
   margin-inline: auto;
 }
