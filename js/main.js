@@ -262,11 +262,13 @@
           </div>
           <span class="poster-brand">TED<sup>x</sup><em>Chicago</em></span>
           <h3 class="speaker-name">${sp.nameLines.map(escapeHtml).join("<br>")}</h3>
+          <span class="poster-read-bio-clip">
+            <span class="poster-read-bio" data-speaker-trigger>Read Bio</span>
+          </span>
         </div>
         <div class="speaker-info">
           <p class="speaker-role">${escapeHtml(sp.role)}</p>
           <p class="speaker-topic">${escapeHtml(sp.idea || "Talk details coming soon.")}</p>
-          <span class="btn btn-line" data-speaker-trigger>Read Bio</span>
         </div>
       </article>
     `).join("");
