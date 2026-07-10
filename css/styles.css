@@ -114,14 +114,16 @@ sup { font-size: 0.55em; }
   html { scroll-behavior: auto; }
 }
 
-/* ── TV static (per-section animated noise) ────────────────── */
+/* ── TV static (per-section animated noise, sits above any
+       parallax background media) ───────────────────────────── */
 .tv-static { overflow: hidden; }
-.tv-static > .container { position: relative; z-index: 1; }
+.tv-static > .container { position: relative; z-index: 2; }
 .tv-static::before {
   content: "";
   position: absolute;
   inset: -60%;
   pointer-events: none;
+  z-index: 1;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
   opacity: 0.35;
@@ -140,6 +142,41 @@ sup { font-size: 0.55em; }
 }
 @media (prefers-reduced-motion: reduce) {
   .tv-static::before { animation: none; }
+}
+
+/* ── Parallax background media (Chicago skyline) ───────────── */
+.parallax-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+.parallax-img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 130%;
+  min-width: 900px;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  object-position: center 65%;
+  will-change: transform;
+}
+/* Brand-tinted scrim: darkens/tints the photo so tier cards and
+   ink text stay legible while the skyline reads through. */
+.parallax-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(171, 188, 207, 0.88) 0%, rgba(171, 188, 207, 0.7) 45%, rgba(113, 130, 148, 0.85) 100%),
+    linear-gradient(rgba(36, 51, 69, 0.35), rgba(36, 51, 69, 0.35));
+  background-blend-mode: normal, multiply;
+}
+@media (prefers-reduced-motion: reduce) {
+  .parallax-img { transform: translate(-50%, -50%) !important; }
 }
 
 /* ── Layout primitives ─────────────────────────────────────── */
@@ -611,7 +648,7 @@ sup { font-size: 0.55em; }
 /* ── Carousels (scroll-snap) ───────────────────────────────── */
 .carousel {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.1rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -623,11 +660,17 @@ sup { font-size: 0.55em; }
 
 /* ── Speaker cards (poster style, from social concepts) ────── */
 .speaker-card {
-  width: clamp(270px, 27vw, 330px);
+  width: clamp(200px, 19vw, 240px);
   position: relative;
+  cursor: pointer;
   transition: transform 0.25s ease;
 }
 .speaker-card:hover { transform: translateY(-6px); }
+.speaker-card:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
 
 .speaker-poster {
   position: relative;
@@ -689,17 +732,29 @@ sup { font-size: 0.55em; }
 
 .speaker-poster .logo { z-index: 2; color: var(--sky); }
 .speaker-card.alt .speaker-poster .logo { color: var(--navy); }
-.poster-mark {
+
+/* Tag pills — small rectangular red chips across the top of the poster */
+.poster-tags {
   position: absolute;
-  top: 1.1rem;
-  left: 1.1rem;
-  width: 46px;
+  top: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
 }
-.poster-wtp {
-  position: absolute;
-  top: 1.05rem;
-  right: 1.1rem;
-  width: 56px;
+.tag-pill {
+  background: var(--red);
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 0.32rem 0.5rem;
+  border-radius: 2px;
+  white-space: nowrap;
 }
 
 .portrait {
@@ -718,12 +773,12 @@ sup { font-size: 0.55em; }
 
 .speaker-poster .speaker-name {
   position: absolute;
-  left: 1.1rem;
-  bottom: 0.9rem;
+  left: 0.75rem;
+  bottom: 0.65rem;
   z-index: 2;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 2.3rem;
+  font-size: 1.55rem;
   line-height: 0.95;
   letter-spacing: 0.01em;
   color: #fff;
@@ -732,10 +787,10 @@ sup { font-size: 0.55em; }
 
 .poster-brand {
   position: absolute;
-  right: 1rem;
-  bottom: 1rem;
+  right: 0.7rem;
+  bottom: 0.7rem;
   z-index: 2;
-  font-size: 0.72rem;
+  font-size: 0.58rem;
   font-weight: 800;
   letter-spacing: -0.01em;
   color: var(--red);
@@ -752,10 +807,15 @@ sup { font-size: 0.55em; }
   color: var(--red);
 }
 .speaker-topic {
-  font-size: 1.02rem;
+  font-size: 0.92rem;
   font-weight: 600;
   color: #fff;
   margin: 0.35rem 0 0.9rem;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* ── Event details ─────────────────────────────────────────── */
@@ -1200,3 +1260,157 @@ sup { font-size: 0.55em; }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; transition: none; }
 }
+
+/* ── Speaker bio modal ───────────────────────────────────────
+   Single shared dialog; content injected per-speaker by main.js. */
+body.modal-open { overflow: hidden; }
+
+.speaker-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 3rem);
+}
+.speaker-modal[hidden] { display: none; }
+
+.speaker-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 7, 13, 0.86);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.speaker-modal.is-open .speaker-modal-backdrop { opacity: 1; }
+
+.speaker-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(760px, 100%);
+  max-height: min(88vh, 900px);
+  overflow-y: auto;
+  background: var(--navy);
+  border-top: 3px solid var(--red);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  opacity: 0;
+  transform: translateY(18px) scale(0.98);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+.speaker-modal.is-open .speaker-modal-dialog {
+  opacity: 1;
+  transform: none;
+}
+@media (max-width: 680px) {
+  .speaker-modal-dialog { grid-template-columns: 1fr; }
+}
+
+.speaker-modal-watermark {
+  position: absolute;
+  top: -10%;
+  right: -6%;
+  width: 46%;
+  color: rgba(171, 188, 207, 0.06);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.speaker-modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: rgba(7, 11, 20, 0.55);
+  border: 1px solid rgba(171, 188, 207, 0.3);
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.speaker-modal-close:hover { background: var(--red); border-color: var(--red); }
+
+.speaker-modal-media {
+  position: relative;
+  background:
+    linear-gradient(160deg, rgba(113, 130, 148, 0.3), rgba(7, 11, 20, 0.8)),
+    var(--navy);
+  min-height: 200px;
+  overflow: hidden;
+}
+.speaker-modal-media .portrait { position: absolute; inset: 0; display: grid; place-items: end center; }
+.speaker-modal-media .portrait svg { width: 82%; height: auto; fill: rgba(171, 188, 207, 0.3); }
+
+.speaker-modal-body {
+  position: relative;
+  z-index: 1;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.speaker-modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.speaker-modal-tags .tag-pill { font-size: 0.62rem; padding: 0.34rem 0.6rem; }
+
+.speaker-modal-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+  line-height: 1.05;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+.speaker-modal-role {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.speaker-modal-formal {
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  color: var(--sky);
+}
+.speaker-modal-formal[hidden] { display: none; }
+
+.speaker-modal-idea {
+  margin-top: 1.25rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--red);
+}
+.speaker-modal-idea p {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  line-height: 1.25;
+  color: #fff;
+}
+
+.speaker-modal-bio {
+  margin-top: 1.5rem;
+  color: var(--sky);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+.speaker-modal-bio p + p { margin-top: 0.9rem; }
+
+.speaker-modal-brand {
+  display: block;
+  margin-top: 1.75rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--red);
+}
+.speaker-modal-brand em { font-style: normal; font-weight: 400; color: var(--sky); }
