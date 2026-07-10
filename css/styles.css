@@ -1120,6 +1120,12 @@ sup { font-size: 0.55em; }
   white-space: nowrap;
 }
 .timeline .what { color: #fff; font-weight: 600; font-size: 0.95rem; }
+@media (max-width: 540px) {
+  .timeline li {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+}
 .timeline .what em {
   display: block;
   margin-top: 0.3rem;
