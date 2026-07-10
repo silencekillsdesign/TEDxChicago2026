@@ -261,10 +261,10 @@
             <svg viewBox="0 0 200 240"><circle cx="100" cy="86" r="46"/><path d="M100 142 c-52 0 -76 38 -76 98 h152 c0 -60 -24 -98 -76 -98z"/></svg>
           </div>
           <span class="poster-brand">TED<sup>x</sup><em>Chicago</em></span>
-          <h3 class="speaker-name">${sp.nameLines.map(escapeHtml).join("<br>")}</h3>
-          <span class="poster-read-bio-clip">
+          <div class="poster-name-block">
+            <h3 class="speaker-name">${sp.nameLines.map(escapeHtml).join("<br>")}</h3>
             <span class="poster-read-bio" data-speaker-trigger>Read Bio</span>
-          </span>
+          </div>
         </div>
         <div class="speaker-info">
           <p class="speaker-role">${escapeHtml(sp.role)}</p>

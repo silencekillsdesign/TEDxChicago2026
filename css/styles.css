@@ -726,12 +726,29 @@ sup { font-size: 0.55em; }
 }
 .speaker-card.alt .portrait svg { fill: rgba(36, 51, 69, 0.4); }
 
-.speaker-poster .speaker-name {
+/* Name + "Read Bio" travel together as one block. At rest the block
+   sits low enough that Read Bio is pushed out below the poster's
+   bottom edge (clipped by .speaker-poster's overflow:hidden); on
+   hover/focus the whole block rises to its natural position,
+   revealing Read Bio under the name. */
+.poster-name-block {
   position: absolute;
   left: 0.75rem;
-  bottom: 2.15rem;
+  bottom: 0.75rem;
   z-index: 2;
   max-width: 50%;
+  transform: translateY(2.6rem);
+  transition: transform 0.35s ease;
+}
+.speaker-card:hover .poster-name-block,
+.speaker-card:focus-within .poster-name-block {
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .poster-name-block { transition: none; }
+}
+
+.speaker-poster .speaker-name {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1.55rem;
@@ -741,18 +758,9 @@ sup { font-size: 0.55em; }
 }
 .speaker-card.alt .speaker-name { color: var(--ink); }
 
-/* "Read Bio" tucked under the name; slides up into view on hover/focus */
-.poster-read-bio-clip {
-  position: absolute;
-  left: 0.75rem;
-  bottom: 0.75rem;
-  z-index: 2;
-  max-width: 50%;
-  height: 1.1rem;
-  overflow: hidden;
-}
 .poster-read-bio {
-  display: block;
+  display: inline-block;
+  margin-top: 0.5rem;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -760,17 +768,8 @@ sup { font-size: 0.55em; }
   color: #fff;
   padding-bottom: 3px;
   border-bottom: 2px solid var(--red);
-  transform: translateY(120%);
-  transition: transform 0.35s ease;
 }
 .speaker-card.alt .poster-read-bio { color: var(--ink); }
-.speaker-card:hover .poster-read-bio,
-.speaker-card:focus-within .poster-read-bio {
-  transform: translateY(0);
-}
-@media (prefers-reduced-motion: reduce) {
-  .poster-read-bio { transition: none; }
-}
 
 .poster-brand {
   position: absolute;
