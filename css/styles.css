@@ -728,7 +728,7 @@ sup { font-size: 0.55em; }
 
 .speaker-poster .speaker-name {
   position: absolute;
-  left: 0.75rem;
+  right: 0.75rem;
   bottom: 2.15rem;
   z-index: 2;
   font-family: var(--font-display);
@@ -737,13 +737,14 @@ sup { font-size: 0.55em; }
   line-height: 0.95;
   letter-spacing: 0.01em;
   color: #fff;
+  text-align: right;
 }
 .speaker-card.alt .speaker-name { color: var(--ink); }
 
 /* "Read Bio" tucked under the name; slides up into view on hover/focus */
 .poster-read-bio-clip {
   position: absolute;
-  left: 0.75rem;
+  right: 0.75rem;
   bottom: 0.75rem;
   z-index: 2;
   height: 1.1rem;
@@ -760,6 +761,7 @@ sup { font-size: 0.55em; }
   border-bottom: 2px solid var(--red);
   transform: translateY(120%);
   transition: transform 0.35s ease;
+  text-align: right;
 }
 .speaker-card.alt .poster-read-bio { color: var(--ink); }
 .speaker-card:hover .poster-read-bio,
