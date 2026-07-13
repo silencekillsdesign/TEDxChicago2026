@@ -797,6 +797,32 @@ sup { font-size: 0.55em; }
 }
 .speaker-card.alt .portrait svg { fill: rgba(36, 51, 69, 0.4); }
 
+/* Real headshots: full-bleed, duotoned to match the site's on-the-street
+   photography treatment instead of the illustrated placeholder. */
+.portrait.has-photo { display: block; }
+.portrait.has-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(1) contrast(1.08) brightness(0.95);
+  mix-blend-mode: luminosity;
+}
+.portrait.has-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(165deg, rgba(171, 188, 207, 0.4), rgba(36, 51, 69, 0.6));
+  mix-blend-mode: color;
+}
+.speaker-card.alt .portrait.has-photo::after {
+  background: linear-gradient(165deg, rgba(113, 130, 148, 0.4), rgba(7, 11, 20, 0.4));
+}
+
 /* Name + "Read Bio" travel together as one block. At rest the block
    sits low enough that Read Bio is pushed out below the poster's
    bottom edge (clipped by .speaker-poster's overflow:hidden); on

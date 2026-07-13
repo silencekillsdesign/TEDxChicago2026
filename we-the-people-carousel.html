@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TEDxChicago 2026 — We The People Carousel</title>
+  <style>
+    :root {
+      --red: #E62B1E;
+      --ink: #070B14;
+      --navy: #243345;
+      --slate: #718294;
+      --sky: #ABBCCF;
+      --paper: #F4F2EC;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .wtp-carousel-section {
+      position: relative;
+      overflow: hidden;
+      padding: 5rem 1.5rem;
+      background:
+        radial-gradient(circle at top left, rgba(230, 43, 30, 0.16), transparent 30%),
+        linear-gradient(135deg, var(--ink), var(--navy));
+    }
+
+    .wtp-carousel-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.11;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    .wtp-carousel-shell {
+      position: relative;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      background: rgba(7, 11, 20, 0.78);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.32);
+      backdrop-filter: blur(10px);
+    }
+
+    .wtp-carousel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .wtp-carousel-title {
+      font-family: "Handjet", "Courier New", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin: 0;
+      color: var(--paper);
+    }
+
+    .wtp-carousel-controls {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .wtp-carousel-controls button {
+      border: 1px solid rgba(255,255,255,0.2);
+      background: transparent;
+      color: var(--paper);
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .wtp-carousel-controls button:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
+    }
+
+    .wtp-carousel-stage {
+      position: relative;
+      min-height: 260px;
+      display: grid;
+      place-items: center;
+    }
+
+    .wtp-slide {
+      display: none;
+      width: 100%;
+      text-align: center;
+      padding: 1.25rem 0.25rem;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .wtp-slide.is-active {
+      display: block;
+    }
+
+    .wtp-quote {
+      font-family: "Handjet", "Courier New", monospace;
+      font-size: clamp(1.35rem, 2.5vw, 2rem);
+      line-height: 1.35;
+      margin: 0 0 1rem;
+      color: var(--paper);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .wtp-cite {
+      display: block;
+      color: var(--sky);
+      font-size: 0.95rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .wtp-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 1.25rem;
+    }
+
+    .wtp-dots button {
+      width: 11px;
+      height: 11px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .wtp-dots button.is-active {
+      background: var(--red);
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 640px) {
+      .wtp-carousel-shell { padding: 1.25rem; }
+      .wtp-carousel-header { flex-direction: column; align-items: flex-start; }
+      .wtp-carousel-controls { align-self: flex-end; }
+    }
+  </style>
+</head>
+<body>
+  <section class="wtp-carousel-section" aria-label="We The People quotes carousel">
+    <div class="wtp-carousel-shell">
+      <div class="wtp-carousel-header">
+        <h2 class="wtp-carousel-title">We The People</h2>
+        <div class="wtp-carousel-controls">
+          <button type="button" class="wtp-prev" aria-label="Previous quote">←</button>
+          <button type="button" class="wtp-next" aria-label="Next quote">→</button>
+        </div>
+      </div>
+
+      <div class="wtp-carousel-stage">
+        <div class="wtp-slide is-active">
+          <p class="wtp-quote">“When the people of this city come together, there is nothing we cannot reinvent.”</p>
+          <span class="wtp-cite">— We The People Campaign</span>
+        </div>
+
+        <div class="wtp-slide">
+          <p class="wtp-quote">“Every voice is a pixel. Together we form the bigger picture.”</p>
+          <span class="wtp-cite">— We The People Campaign</span>
+        </div>
+
+        <div class="wtp-slide">
+          <p class="wtp-quote">“From ‘me’ to ‘we’ — that shift changes everything.”</p>
+          <span class="wtp-cite">— We The People Campaign</span>
+        </div>
+      </div>
+
+      <div class="wtp-dots" role="tablist" aria-label="Carousel navigation">
+        <button type="button" class="is-active" aria-label="Show quote 1"></button>
+        <button type="button" aria-label="Show quote 2"></button>
+        <button type="button" aria-label="Show quote 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      const slides = Array.from(document.querySelectorAll('.wtp-slide'));
+      const dots = Array.from(document.querySelectorAll('.wtp-dots button'));
+      const prevBtn = document.querySelector('.wtp-prev');
+      const nextBtn = document.querySelector('.wtp-next');
+      let activeIndex = 0;
+      let autoplayTimer;
+
+      function showSlide(index) {
+        activeIndex = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('is-active', i === activeIndex);
+        });
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('is-active', i === activeIndex);
+        });
+      }
+
+      function nextSlide() {
+        showSlide(activeIndex + 1);
+      }
+
+      function prevSlide() {
+        showSlide(activeIndex - 1);
+      }
+
+      function startAutoplay() {
+        clearInterval(autoplayTimer);
+        autoplayTimer = setInterval(nextSlide, 6000);
+      }
+
+      prevBtn?.addEventListener('click', () => {
+        prevSlide();
+        startAutoplay();
+      });
+
+      nextBtn?.addEventListener('click', () => {
+        nextSlide();
+        startAutoplay();
+      });
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          showSlide(index);
+          startAutoplay();
+        });
+      });
+
+      document.querySelector('.wtp-carousel-section')?.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
+      document.querySelector('.wtp-carousel-section')?.addEventListener('mouseleave', startAutoplay);
+
+      showSlide(0);
+      startAutoplay();
+    })();
+  </script>
+</body>
+</html>

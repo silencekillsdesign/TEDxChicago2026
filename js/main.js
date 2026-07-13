@@ -257,8 +257,10 @@
                 aria-label="Read full bio for ${escapeHtml(sp.name)}">
         <div class="speaker-poster">
           <span class="poster-pattern" aria-hidden="true"></span>
-          <div class="portrait" aria-hidden="true">
-            <svg viewBox="0 0 200 240"><circle cx="100" cy="86" r="46"/><path d="M100 142 c-52 0 -76 38 -76 98 h152 c0 -60 -24 -98 -76 -98z"/></svg>
+          <div class="portrait${sp.photo ? " has-photo" : ""}" aria-hidden="true">
+            ${sp.photo
+              ? `<img src="${escapeHtml(sp.photo)}" alt="" loading="lazy">`
+              : `<svg viewBox="0 0 200 240"><circle cx="100" cy="86" r="46"/><path d="M100 142 c-52 0 -76 38 -76 98 h152 c0 -60 -24 -98 -76 -98z"/></svg>`}
           </div>
           <span class="poster-brand">TED<sup>x</sup><em>Chicago</em></span>
           <div class="poster-name-block">
@@ -279,6 +281,7 @@
   const speakerModal = document.getElementById("speakerModal");
   if (speakerModal) {
     const modalDialog = speakerModal.querySelector(".speaker-modal-dialog");
+    const modalPortrait = document.getElementById("speakerModalPortrait");
     const modalName = document.getElementById("speakerModalName");
     const modalRole = document.getElementById("speakerModalRole");
     const modalFormal = document.getElementById("speakerModalFormal");
@@ -313,6 +316,11 @@
     function openSpeakerModal(speaker, trigger) {
       clearTimeout(closeTimer);
       lastFocused = trigger || document.activeElement;
+
+      modalPortrait.classList.toggle("has-photo", !!speaker.photo);
+      modalPortrait.innerHTML = speaker.photo
+        ? `<img src="${escapeHtml(speaker.photo)}" alt="">`
+        : `<svg viewBox="0 0 200 240"><circle cx="100" cy="86" r="46"/><path d="M100 142 c-52 0 -76 38 -76 98 h152 c0 -60 -24 -98 -76 -98z"/></svg>`;
 
       modalName.textContent = speaker.name;
       modalRole.textContent = speaker.role;

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TEDxChicago 2026 — Performers Section</title>
+  <style>
+    :root {
+      --red: #E62B1E;
+      --ink: #070B14;
+      --navy: #243345;
+      --slate: #718294;
+      --sky: #ABBCCF;
+      --paper: #F4F2EC;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .performers-section {
+      background: linear-gradient(135deg, var(--ink), var(--navy));
+      padding: 5rem 1.5rem;
+    }
+
+    .performers-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .performers-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .performers-eyebrow {
+      font-size: 0.82rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 0.5rem;
+    }
+
+    .performers-title {
+      font-family: "Handjet", "Courier New", monospace;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 0;
+      color: var(--paper);
+    }
+
+    .performers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .performer-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      min-height: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
+
+    .performer-photo {
+      aspect-ratio: 1 / 1.1;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(171,188,207,0.25), rgba(36,51,69,0.35));
+      overflow: hidden;
+    }
+
+    .performer-photo .portrait {
+      width: 72%;
+      max-width: 140px;
+      color: var(--paper);
+    }
+
+    .performer-photo .portrait svg {
+      width: 100%;
+      height: auto;
+      fill: currentColor;
+      opacity: 0.95;
+    }
+
+    .performer-name {
+      font-family: "Handjet", "Courier New", monospace;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 0;
+    }
+
+    .performer-type {
+      color: var(--sky);
+      line-height: 1.6;
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .performer-link {
+      display: inline-block;
+      margin-top: auto;
+      width: fit-content;
+      padding: 0.72rem 1rem;
+      border: 1px solid var(--red);
+      color: var(--paper);
+      text-decoration: none;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .performer-link:hover {
+      background: var(--red);
+      transform: translateY(-1px);
+    }
+
+    .performer-card.coming-soon {
+      background: rgba(230, 43, 30, 0.08);
+      border-color: rgba(230, 43, 30, 0.3);
+    }
+
+    .soon-mark {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--red);
+      display: inline-grid;
+      place-items: center;
+      color: var(--paper);
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .performers-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 600px) {
+      .performers-grid { grid-template-columns: 1fr; }
+      .performers-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <section class="performers-section" aria-label="Performers and artists">
+    <div class="performers-shell">
+      <div class="performers-header">
+        <div>
+          <p class="performers-eyebrow">The Stage</p>
+          <h2 class="performers-title">Performers &amp; Artists</h2>
+        </div>
+      </div>
+
+      <div class="performers-grid">
+        <article class="performer-card">
+          <div class="performer-photo">
+            <div class="portrait" aria-hidden="true">
+              <svg viewBox="0 0 200 240"><circle cx="100" cy="86" r="46"/><path d="M100 142 c-52 0 -76 38 -76 98 h152 c0 -60 -24 -98 -76 -98z"/></svg>
+            </div>
+          </div>
+          <h3 class="performer-name">Name</h3>
+          <p class="performer-type">Title / performance / artist type</p>
+          <a class="performer-link" href="#">Read Bio</a>
+        </article>
+
+        <article class="performer-card">
+          <div class="performer-photo">
+            <div class="portrait" aria-hidden="true">
+              <svg viewBox="0 0 200 240"><circle cx="100" cy="86" r="46"/><path d="M100 142 c-52 0 -76 38 -76 98 h152 c0 -60 -24 -98 -76 -98z"/></svg>
+            </div>
+          </div>
+          <h3 class="performer-name">Name</h3>
+          <p class="performer-type">Title / performance / artist type</p>
+          <a class="performer-link" href="#">Read Bio</a>
+        </article>
+
+        <article class="performer-card">
+          <div class="performer-photo">
+            <div class="portrait" aria-hidden="true">
+              <svg viewBox="0 0 200 240"><circle cx="100" cy="86" r="46"/><path d="M100 142 c-52 0 -76 38 -76 98 h152 c0 -60 -24 -98 -76 -98z"/></svg>
+            </div>
+          </div>
+          <h3 class="performer-name">Name</h3>
+          <p class="performer-type">Title / performance / artist type</p>
+          <a class="performer-link" href="#">Read Bio</a>
+        </article>
+
+        <article class="performer-card coming-soon">
+          <div class="performer-photo">
+            <span class="soon-mark">Coming Soon</span>
+          </div>
+          <h3 class="performer-name">Coming Soon</h3>
+          <p class="performer-type">Check back later for more performers to be announced prior to the event.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
