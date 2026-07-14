@@ -1174,13 +1174,46 @@ sup { font-size: 0.55em; }
 .tier-featured .tier-brand em { color: #fff; }
 
 /* ── Partners ──────────────────────────────────────────────── */
+/* Four tiers, descending logo size: Beacon (largest) → Campfire →
+   Torchlight → Flame (smallest). Higher tiers use fewer columns within
+   a tighter max-width, so each logo box renders larger. */
+.partner-tiers {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 3.75rem);
+}
+.partner-tier-name {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1.5rem;
+}
+
 .partner-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
-  margin-top: 3rem;
+  margin-inline: auto;
+  width: 100%;
 }
-@media (max-width: 860px) { .partner-grid { grid-template-columns: repeat(2, 1fr); } }
+.partner-grid--beacon     { grid-template-columns: repeat(2, 1fr); max-width: 680px; }
+.partner-grid--campfire   { grid-template-columns: repeat(3, 1fr); max-width: 860px; }
+.partner-grid--torchlight { grid-template-columns: repeat(4, 1fr); max-width: 1000px; }
+.partner-grid--flame      { grid-template-columns: repeat(6, 1fr); }
+
+@media (max-width: 860px) {
+  .partner-grid--beacon,
+  .partner-grid--campfire   { grid-template-columns: repeat(2, 1fr); }
+  .partner-grid--torchlight,
+  .partner-grid--flame      { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 480px) {
+  .partner-grid--torchlight,
+  .partner-grid--flame      { grid-template-columns: repeat(2, 1fr); }
+}
 
 .partner-logo {
   aspect-ratio: 5 / 3;
