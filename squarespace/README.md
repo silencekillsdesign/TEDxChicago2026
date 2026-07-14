@@ -21,24 +21,24 @@ python squarespace/build.py
 ## Step 0 — Hosting the CSS / JS / images
 
 The bundle points at jsDelivr, which serves files straight from the
-GitHub repo — **but only if the repo is public**. This repo is currently
-**private**, so pick one:
+GitHub repo — **but only if the repo is public**.
 
-**Option A (recommended): make the repo public.**
-GitHub → repo → Settings → General → Danger Zone → Change visibility.
-Then push, and these URLs go live automatically:
+**Status: the repo is now PUBLIC and pushed, so these URLs are live:**
 
 ```
 https://cdn.jsdelivr.net/gh/silencekillsdesign/TEDxChicago2026@main/css/styles.css
 https://cdn.jsdelivr.net/gh/silencekillsdesign/TEDxChicago2026@main/js/main.js
 ```
 
+Nothing more to do here for Option A — just re-run `build.py` and push
+whenever `index.html`/`css`/`js`/`assets` change.
+
 Note: jsDelivr caches `@main` for ~12 hours. To force-refresh after a
 push, pin a commit hash in `build.py`'s `ASSET_BASE`
-(`...TEDxChicago2026@<commit>/`) and regenerate, or purge via
-`https://purge.jsdelivr.net/gh/...`.
+(`...TEDxChicago2026@<commit>/`) and regenerate, or purge per file via
+`https://purge.jsdelivr.net/gh/silencekillsdesign/TEDxChicago2026@main/css/styles.css`.
 
-**Option B: host the files on Squarespace itself.**
+**Option B (alternative): host the files on Squarespace itself.**
 Squarespace can store arbitrary files (served from `/s/filename`): in
 any Link editor choose Link → File → Upload. Upload `styles.css`,
 `main.js`, and everything under `assets/` (flattened), then update the
