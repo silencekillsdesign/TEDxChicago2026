@@ -247,6 +247,13 @@
       "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
     })[c]);
 
+  /* Asset base for JS-generated URLs (speaker photos). Empty locally,
+     so relative paths work against the dev server; on Squarespace the
+     footer injection sets window.TEDX_ASSET_BASE to the CDN root
+     (with a trailing slash) before this script loads. */
+  const ASSET_BASE = window.TEDX_ASSET_BASE || "";
+  const assetUrl = (path) => ASSET_BASE + path;
+
   /* ── Render speaker cards from SPEAKERS into #speakerTrack ── */
   const renderSpeakerCards = () => {
     const track = document.getElementById("speakerTrack");
@@ -259,7 +266,7 @@
           <span class="poster-pattern" aria-hidden="true"></span>
           <div class="portrait${sp.photo ? " has-photo" : ""}" aria-hidden="true">
             ${sp.photo
-              ? `<img src="${escapeHtml(sp.photo)}" alt="" loading="lazy">`
+              ? `<img src="${escapeHtml(assetUrl(sp.photo))}" alt="" loading="lazy">`
               : `<svg viewBox="0 0 200 240"><circle cx="100" cy="86" r="46"/><path d="M100 142 c-52 0 -76 38 -76 98 h152 c0 -60 -24 -98 -76 -98z"/></svg>`}
           </div>
           <span class="poster-brand">TED<sup>x</sup><em>Chicago</em></span>
@@ -319,7 +326,7 @@
 
       modalPortrait.classList.toggle("has-photo", !!speaker.photo);
       modalPortrait.innerHTML = speaker.photo
-        ? `<img src="${escapeHtml(speaker.photo)}" alt="">`
+        ? `<img src="${escapeHtml(assetUrl(speaker.photo))}" alt="">`
         : `<svg viewBox="0 0 200 240"><circle cx="100" cy="86" r="46"/><path d="M100 142 c-52 0 -76 38 -76 98 h152 c0 -60 -24 -98 -76 -98z"/></svg>`;
 
       modalName.textContent = speaker.name;

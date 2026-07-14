@@ -117,7 +117,7 @@ sup { font-size: 0.55em; }
 /* ── TV static (per-section animated noise, sits above any
        parallax background media) ───────────────────────────── */
 .tv-static { overflow: hidden; }
-.tv-static > .container { position: relative; z-index: 2; }
+.tv-static > .tedx-container { position: relative; z-index: 2; }
 .tv-static::before {
   content: "";
   position: absolute;
@@ -180,13 +180,15 @@ sup { font-size: 0.55em; }
 }
 
 /* ── Layout primitives ─────────────────────────────────────── */
-.container {
+/* "tedx-" prefixes avoid collisions with Squarespace's own
+   .container/.section class names when embedded in a Code Block. */
+.tedx-container {
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: var(--pad);
 }
 
-.section { padding-block: clamp(4rem, 9vw, 7.5rem); position: relative; }
+.tedx-section { padding-block: clamp(4rem, 9vw, 7.5rem); position: relative; }
 .section-dark  { background: var(--ink); color: var(--sky); }
 .section-navy  { background: var(--navy); color: var(--sky); }
 .section-blue  { background: var(--sky); color: var(--ink); }
