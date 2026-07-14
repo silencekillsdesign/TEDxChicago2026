@@ -2,12 +2,29 @@
 
 The site embeds into Squarespace as custom code — Squarespace's native
 sections can't reproduce the carousels, modal, hover reveals, or the
-duotone/grain treatments. Three pieces:
+duotone/grain treatments.
+
+> ## ⚠️ READ THIS FIRST — use PAGE-LEVEL injection, NOT site-wide
+>
+> **Do NOT paste `header-injection.html` into the site-wide
+> Settings → Advanced → Code Injection → Header.** `styles.css` contains
+> intentionally global rules — a `* { margin:0; padding:0 }` reset, a dark
+> `body { background; color; font-family }`, and `a { color:inherit;
+> text-decoration:none }` — that the standalone page needs. Loaded
+> site-wide, these **restyle and break every other page on your site**
+> (dark background everywhere, wiped spacing, stripped link styles).
+>
+> **Instead, put BOTH the header and footer code on the event page only:**
+> the page's own **Page Settings → Advanced → Page Header Code Injection**.
+> That scopes everything to that single page and leaves the rest of the
+> site untouched. See Step 1.
+
+Three pieces:
 
 | File | Where it goes in Squarespace |
 |---|---|
-| `header-injection.html` | Settings → Advanced → Code Injection → **Header** |
-| `footer-injection.html` | Settings → Advanced → Code Injection → **Footer** |
+| `header-injection.html` | Event page → **Page Settings → Advanced → Page Header Code Injection** (top) |
+| `footer-injection.html` | Same box, **below** the header code (page-level has no separate footer box) |
 | `page-code-block.html` | A single **Code Block** on the event page |
 
 Regenerate all three any time `index.html` changes:
@@ -46,16 +63,20 @@ URLs in the three bundle files by hand (or set `ASSET_BASE` in
 `build.py` accordingly for the HTML and fix the CSS's relative
 `url(../assets/...)` references — Option A avoids all of this).
 
-## Step 1 — Code Injection (needs Business plan or higher)
+## Step 1 — Page-level Code Injection (needs Business plan or higher)
 
-Paste `header-injection.html` into the Header box and
-`footer-injection.html` into the Footer box
-(Settings → Advanced → Code Injection).
+On the event page, open **Page Settings → Advanced → Page Header Code
+Injection** and paste, in this order, into that single box:
 
-Site-wide injection loads the fonts/CSS/JS on every page. If the
-event page is the only custom page, you can instead paste both into
-that page's own **Page Settings → Advanced → Page Header Code
-Injection** to keep the rest of the site untouched.
+1. the contents of `header-injection.html` (fonts + CSS), then
+2. the contents of `footer-injection.html` (the JS + `TEDX_ASSET_BASE`).
+
+Page-level injection scopes the fonts/CSS/JS to this page only, so the
+global rules in `styles.css` can't leak into the rest of the site.
+
+**Avoid the site-wide Settings → Advanced → Code Injection Header/Footer
+boxes** — see the warning at the top. Only use site-wide injection if
+you've refactored `styles.css` to scope its `*`/`body`/`a` resets.
 
 ## Step 2 — The page
 
