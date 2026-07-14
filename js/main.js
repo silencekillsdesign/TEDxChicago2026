@@ -164,7 +164,7 @@
       formal: "",
       idea: "",
       tags: [],
-      photo: null,
+      photo: "assets/speakers/mary-meg-mccarthy.png",
       bio: [
         "For four decades, Mary Meg McCarthy has worked on the front lines of human rights, defending the principle that justice is something a community builds and protects together. As longtime leader of Chicago’s National Immigrant Justice Center (NIJC), she grew the organization into one of the nation’s foremost immigrant and human rights advocates, anchored by an extraordinary network of more than 1,500 pro bono attorneys serving roughly 10,000 immigrants, refugees, and asylum seekers each year.",
         "A Notre Dame and Loyola University Chicago School of Law graduate, Mary Meg began her career safeguarding the rights of individuals living under dictatorship in Chile, an experience that shaped her lifelong conviction about what holds the rule of law in place. An expert who has testified before Congress and chaired the American Bar Association’s Commission on Immigration, she has spent her life proving that the most powerful protection against injustice is the organized solidarity of ordinary people who refuse to look away."
@@ -254,6 +254,25 @@
   const ASSET_BASE = window.TEDX_ASSET_BASE || "";
   const assetUrl = (path) => ASSET_BASE + path;
 
+  /* Illustrated fallback shown when a speaker has no photo — or when a
+     photo file fails to load (e.g. missing on disk / 404 on the CDN). */
+  const PORTRAIT_PLACEHOLDER =
+    `<svg viewBox="0 0 200 240"><circle cx="100" cy="86" r="46"/><path d="M100 142 c-52 0 -76 38 -76 98 h152 c0 -60 -24 -98 -76 -98z"/></svg>`;
+
+  /* Swap a broken photo for the illustrated placeholder. Attached after
+     render (not as an inline onerror — the SVG's quotes can't live inside
+     an HTML attribute), and re-checks .complete in case the 404 already
+     fired before this listener was attached. */
+  const attachPhotoFallback = (img) => {
+    if (!img) return;
+    const fail = () => {
+      const p = img.closest(".portrait");
+      if (p) { p.classList.remove("has-photo"); p.innerHTML = PORTRAIT_PLACEHOLDER; }
+    };
+    img.addEventListener("error", fail);
+    if (img.complete && img.naturalWidth === 0) fail();
+  };
+
   /* ── Render speaker cards from SPEAKERS into #speakerTrack ── */
   const renderSpeakerCards = () => {
     const track = document.getElementById("speakerTrack");
@@ -267,7 +286,7 @@
           <div class="portrait${sp.photo ? " has-photo" : ""}" aria-hidden="true">
             ${sp.photo
               ? `<img src="${escapeHtml(assetUrl(sp.photo))}" alt="" loading="lazy">`
-              : `<svg viewBox="0 0 200 240"><circle cx="100" cy="86" r="46"/><path d="M100 142 c-52 0 -76 38 -76 98 h152 c0 -60 -24 -98 -76 -98z"/></svg>`}
+              : PORTRAIT_PLACEHOLDER}
           </div>
           <span class="poster-brand">TED<sup>x</sup><em>Chicago</em></span>
           <div class="poster-name-block">
@@ -281,6 +300,7 @@
         </div>
       </article>
     `).join("");
+    track.querySelectorAll(".portrait img").forEach(attachPhotoFallback);
   };
   renderSpeakerCards();
 
@@ -327,7 +347,8 @@
       modalPortrait.classList.toggle("has-photo", !!speaker.photo);
       modalPortrait.innerHTML = speaker.photo
         ? `<img src="${escapeHtml(assetUrl(speaker.photo))}" alt="">`
-        : `<svg viewBox="0 0 200 240"><circle cx="100" cy="86" r="46"/><path d="M100 142 c-52 0 -76 38 -76 98 h152 c0 -60 -24 -98 -76 -98z"/></svg>`;
+        : PORTRAIT_PLACEHOLDER;
+      attachPhotoFallback(modalPortrait.querySelector("img"));
 
       modalName.textContent = speaker.name;
       modalRole.textContent = speaker.role;
