@@ -731,6 +731,8 @@ sup { font-size: 0.55em; }
 .carousel::-webkit-scrollbar { display: none; }
 .carousel > * { scroll-snap-align: start; flex-shrink: 0; }
 
+.speakers-cta { display: flex; justify-content: center; margin-top: clamp(2rem, 4vw, 3rem); }
+
 /* ── Speaker cards (poster style, from social concepts) ────── */
 .speaker-card {
   width: clamp(200px, 19vw, 240px);
