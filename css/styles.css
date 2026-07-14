@@ -753,6 +753,33 @@ sup { font-size: 0.55em; }
 }
 .speaker-card.alt .speaker-poster { background: var(--sky); }
 
+/* Dark gradient scrim across the bottom of the poster. Hidden at rest,
+   fades in on hover/focus so the white name + Read Bio stay legible over
+   any photo (especially the lighter "alt" cards). Sits above the photo
+   (z-index 1) but below the name block and brand mark (z-index 2). */
+.speaker-poster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(7, 11, 20, 0.85) 0%,
+    rgba(7, 11, 20, 0.55) 28%,
+    transparent 58%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.speaker-card:hover .speaker-poster::after,
+.speaker-card:focus-within .speaker-poster::after {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .speaker-poster::after { transition: none; }
+}
+
 /* Tiled quote-mark pattern painted through the official SVG */
 .poster-pattern {
   position: absolute;
@@ -855,7 +882,6 @@ sup { font-size: 0.55em; }
   letter-spacing: 0.01em;
   color: #fff;
 }
-.speaker-card.alt .speaker-name { color: var(--ink); }
 
 .poster-read-bio {
   display: inline-block;
@@ -868,7 +894,6 @@ sup { font-size: 0.55em; }
   padding-bottom: 3px;
   border-bottom: 2px solid var(--red);
 }
-.speaker-card.alt .poster-read-bio { color: var(--ink); }
 
 .poster-brand {
   position: absolute;
