@@ -705,6 +705,13 @@ sup { font-size: 0.55em; }
   margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
 .section-head .eyebrow { width: 100%; }
+.venue-address {
+  width: 100%;
+  margin-top: 0.75rem;
+  color: var(--sky);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
 
 .carousel-controls { display: flex; gap: 0.6rem; }
 .ctrl {

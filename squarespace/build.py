@@ -51,11 +51,23 @@ code_block = (
 (OUT / "page-code-block.html").write_text(code_block, encoding="utf-8")
 
 # ── Header injection ────────────────────────────────────────────────
-header = f"""<!-- TEDxChicago 2026 - paste into Settings > Advanced > Code Injection > HEADER -->
+# Pull the Event JSON-LD straight from index.html so there's a single
+# source of truth. (OG/Twitter tags are intentionally NOT injected —
+# set those in Squarespace's own Page SEO / social-sharing panel to
+# avoid duplicate og: tags fighting Squarespace's generated ones.)
+ld = re.search(
+    r'<script type="application/ld\+json">.*?</script>', html, flags=re.S
+)
+json_ld = ld.group(0) if ld else ""
+
+header = f"""<!-- TEDxChicago 2026 - paste into the EVENT PAGE's
+     Page Settings > Advanced > Page Header Code Injection (NOT site-wide). -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{ASSET_BASE}css/styles.css">
+
+{json_ld}
 """
 (OUT / "header-injection.html").write_text(header, encoding="utf-8")
 
