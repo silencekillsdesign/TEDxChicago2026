@@ -468,8 +468,10 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const cardStep = (track) => {
     const card = track.querySelector(":scope > *");
-    const gap = parseFloat(getComputedStyle(track).gap) || 24;
-    return card ? card.offsetWidth + gap : 0;
+    /* A real 0px gap is valid (the quote track has none), so only fall
+       back when the computed value isn't a number at all ("normal"). */
+    const gap = parseFloat(getComputedStyle(track).gap);
+    return card ? card.offsetWidth + (isNaN(gap) ? 24 : gap) : 0;
   };
   const atEnd = (track) => track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
 
@@ -528,33 +530,32 @@
 
   autoAdvanceCarousel(document.getElementById("speakerTrack"), 3000);
 
-  /* ── Quote carousel (auto-rotate + dots) ───────────────── */
-  const quotes = document.querySelectorAll("#quoteSlides .quote");
-  const dots = document.querySelectorAll("#quoteDots .qdot");
-  let quoteIndex = 0;
-  let quoteTimer = null;
+  /* ── Quote carousel (scroll/swipe + auto-advance + dots) ──
+     Reuses the same scroll-snap machinery as the speaker track; the
+     dots just mirror whichever quote is scrolled into view. */
+  const quoteTrack = document.getElementById("quoteSlides");
+  if (quoteTrack) {
+    const dots = [...document.querySelectorAll("#quoteDots .qdot")];
 
-  const showQuote = (i) => {
-    quoteIndex = (i + quotes.length) % quotes.length;
-    quotes.forEach((q, n) => q.classList.toggle("is-active", n === quoteIndex));
-    dots.forEach((d, n) => d.classList.toggle("is-active", n === quoteIndex));
-  };
+    const currentQuote = () =>
+      Math.round(quoteTrack.scrollLeft / quoteTrack.clientWidth);
 
-  const startQuotes = () => {
-    stopQuotes();
-    quoteTimer = setInterval(() => showQuote(quoteIndex + 1), 5500);
-  };
-  const stopQuotes = () => quoteTimer && clearInterval(quoteTimer);
+    const syncDots = () => {
+      const i = currentQuote();
+      dots.forEach((d, n) => d.classList.toggle("is-active", n === i));
+    };
 
-  dots.forEach((dot, n) => {
-    dot.addEventListener("click", () => {
-      showQuote(n);
-      startQuotes(); // reset the clock after manual pick
+    quoteTrack.addEventListener("scroll", syncDots, { passive: true });
+    window.addEventListener("resize", syncDots);
+
+    dots.forEach((dot, n) => {
+      dot.addEventListener("click", () => {
+        quoteTrack.scrollTo({ left: n * quoteTrack.clientWidth, behavior: "smooth" });
+      });
     });
-  });
 
-  if (quotes.length && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    startQuotes();
+    syncDots();
+    autoAdvanceCarousel(quoteTrack, 5500);
   }
 
   /* ── Parallax background media (e.g. Membership skyline) ── */

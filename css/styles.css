@@ -973,19 +973,28 @@ sup { font-size: 0.55em; }
 }
 
 .quote-stage { position: relative; min-height: 260px; display: grid; }
-.quote-slides { position: relative; display: grid; }
-.quote {
-  grid-area: 1 / 1;
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  pointer-events: none;
-  text-align: center;
-  max-width: 800px;
-  margin-inline: auto;
-  align-self: center;
+/* Swipeable/scrollable track — one quote per view, snapping into place. */
+.quote-slides {
+  position: relative;
+  display: flex;
+  gap: 0; /* explicit: cardStep() pages by exactly one slide width */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
-.quote.is-active { opacity: 1; transform: none; pointer-events: auto; }
+.quote-slides::-webkit-scrollbar { display: none; }
+/* Each slide fills the track exactly (so snapping + paging line up);
+   the copy inside is what's capped at 800px. */
+.quote {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 0;
+  scroll-snap-align: center;
+  text-align: center;
+  align-self: center;
+  padding-inline: 1rem;
+}
 
 .quote p {
   font-family: var(--font-display);
@@ -993,6 +1002,8 @@ sup { font-size: 0.55em; }
   font-size: clamp(1.8rem, 4.4vw, 3.2rem);
   line-height: 1.1;
   letter-spacing: 0.02em;
+  max-width: 800px;
+  margin-inline: auto;
 }
 .quote cite {
   display: block;
