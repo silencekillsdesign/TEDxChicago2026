@@ -660,7 +660,7 @@ sup { font-size: 0.55em; }
   font-size: 1.4rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--slate);
+  color: var(--red);
   white-space: nowrap;
 }
 @keyframes marquee { to { transform: translateX(-50%); } }
