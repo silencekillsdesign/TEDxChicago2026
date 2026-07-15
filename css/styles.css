@@ -41,6 +41,11 @@
 
 html { scroll-behavior: smooth; }
 
+/* The scoped reset above no longer zeroes the browser's default 8px
+   body margin, which left gutters around the embed. Safe globally —
+   zero body margin is the norm on every host page incl. Squarespace. */
+body { margin: 0; }
+
 #tedx-root {
   position: relative;
   font-family: var(--font-body);
