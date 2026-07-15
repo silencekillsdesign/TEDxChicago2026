@@ -619,13 +619,6 @@ sup { font-size: 0.55em; }
   text-transform: uppercase;
 }
 
-.hero-body {
-  margin: 1.75rem auto 0;
-  max-width: 62ch;
-  color: rgba(171, 188, 207, 0.9);
-  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
-}
-
 .hero-ctas {
   margin-top: 2.25rem;
   display: flex;
