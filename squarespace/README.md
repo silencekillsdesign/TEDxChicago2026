@@ -4,20 +4,17 @@ The site embeds into Squarespace as custom code — Squarespace's native
 sections can't reproduce the carousels, modal, hover reveals, or the
 duotone/grain treatments.
 
-> ## ⚠️ READ THIS FIRST — use PAGE-LEVEL injection, NOT site-wide
+> ## Uses Squarespace's own nav + footer
 >
-> **Do NOT paste `header-injection.html` into the site-wide
-> Settings → Advanced → Code Injection → Header.** `styles.css` contains
-> intentionally global rules — a `* { margin:0; padding:0 }` reset, a dark
-> `body { background; color; font-family }`, and `a { color:inherit;
-> text-decoration:none }` — that the standalone page needs. Loaded
-> site-wide, these **restyle and break every other page on your site**
-> (dark background everywhere, wiped spacing, stripped link styles).
+> The code block ships **without** the embed's header/footer — the page
+> keeps the Squarespace site's normal navigation and footer, styled in
+> Squarespace as usual. (To ship the embed's own chrome instead, set
+> `KEEP_CHROME = True` in `build.py` and regenerate.)
 >
-> **Instead, put BOTH the header and footer code on the event page only:**
-> the page's own **Page Settings → Advanced → Page Header Code Injection**.
-> That scopes everything to that single page and leaves the rest of the
-> site untouched. See Step 1.
+> All CSS is scoped to the `#tedx-root` wrapper, so the embed can't
+> restyle the Squarespace nav/footer around it. Page-level injection
+> (Step 1) is still recommended — it keeps the fonts/CSS/JS off pages
+> that don't need them.
 
 Three pieces:
 
@@ -71,22 +68,19 @@ Injection** and paste, in this order, into that single box:
 1. the contents of `header-injection.html` (fonts + CSS), then
 2. the contents of `footer-injection.html` (the JS + `TEDX_ASSET_BASE`).
 
-Page-level injection scopes the fonts/CSS/JS to this page only, so the
-global rules in `styles.css` can't leak into the rest of the site.
-
-**Avoid the site-wide Settings → Advanced → Code Injection Header/Footer
-boxes** — see the warning at the top. Only use site-wide injection if
-you've refactored `styles.css` to scope its `*`/`body`/`a` resets.
+Page-level injection keeps the fonts/CSS/JS off pages that don't use
+them. (The CSS itself is scoped to `#tedx-root`, so even site-wide
+injection won't restyle other pages — page-level is just tidier.)
 
 ## Step 2 — The page
 
 1. Pages → add a **Blank Page**.
 2. Add a single **Code Block**, paste the full contents of
    `page-code-block.html`, set it to HTML mode.
-3. In Page Settings, hide Squarespace's own header/footer for this
-   page if the template allows (or use a full-width/blank template) —
-   the embed brings its own nav and footer, and stacking both looks
-   broken.
+3. Keep Squarespace's own header/footer visible — the embed no longer
+   ships its own nav/footer and expects the site's chrome around it.
+   Style the Squarespace nav for this page however you like; the hero
+   sits flush against whatever sits above it.
 
 ## Step 3 — Post-publish checklist
 
@@ -94,10 +88,10 @@ you've refactored `styles.css` to scope its `*`/`body`/`a` resets.
 - [ ] Speaker photos load (they come from the CDN via JS — if they
       404, the footer injection didn't run or `TEDX_ASSET_BASE` is wrong)
 - [ ] Carousel auto-advances; modal opens/closes; Escape works
-- [ ] Sticky header doesn't fight Squarespace's announcement bar or
-      cookie banner (z-index) — ours uses 1000/2000
+- [ ] The bio modal overlays Squarespace's nav when open (it should —
+      it uses z-index 2000; raise it if the SS nav sits higher)
 - [ ] Anchor links (`#speakers`, `#event`…) scroll correctly
-- [ ] Mobile: hamburger menu, stacked schedule, message section
+- [ ] Mobile: stacked schedule, message section, modal 2-col head row
 - [ ] Replace placeholder `#` links (Tickets, Team, Contact, Past
       Talks dropdown) with real URLs
 - [ ] Replace CC-licensed placeholder photos (Chicago L, skyline,

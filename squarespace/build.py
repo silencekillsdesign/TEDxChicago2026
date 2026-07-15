@@ -24,6 +24,11 @@ ASSET_BASE = "https://cdn.jsdelivr.net/gh/silencekillsdesign/TEDxChicago2026@mai
 # per-file /s/ URLs; in that case set ASSET_BASE = "/s/" and upload the
 # assets flat, or keep absolute URLs per file.
 
+# The Squarespace page uses the site's OWN nav and footer, so the embed's
+# header/footer are stripped from the code block (index.html keeps them for
+# local development). Set True to ship the embed's chrome instead.
+KEEP_CHROME = False
+
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent
 
@@ -37,6 +42,16 @@ body = m.group(1)
 
 # The JS include moves to footer injection.
 body = re.sub(r'\s*<script src="js/main\.js[^"]*"></script>', "", body)
+
+if not KEEP_CHROME:
+    # Drop the embed's own nav/footer — Squarespace's are used instead.
+    # (main.js null-guards the header/nav lookups, so this is safe.)
+    body = re.sub(r'<header class="site-header".*?</header>\s*', "", body, flags=re.S)
+    body = re.sub(r'<footer class="site-footer".*?</footer>\s*', "", body, flags=re.S)
+    # No fixed embed header any more, so remove the hero's offset for it.
+    body = (
+        '<style>#tedx-root { --header-h: 0px; }</style>\n' + body.lstrip()
+    )
 
 # Point every relative asset reference at the CDN.
 body = body.replace('src="assets/', f'src="{ASSET_BASE}assets/')

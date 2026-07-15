@@ -84,9 +84,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=33">
+  <link rel="stylesheet" href="css/styles.css?v=35">
 </head>
 <body>
+  <!-- All styling is scoped to this wrapper so the embed can't restyle
+       the Squarespace page (nav/footer) that hosts it. -->
+  <div id="tedx-root">
 
   <!-- ══════════════════ GRAIN OVERLAY ══════════════════ -->
   <div class="grain" aria-hidden="true"></div>
@@ -604,6 +607,8 @@
     </div>
   </div>
 
-  <script src="js/main.js?v=21"></script>
+  </div><!-- /#tedx-root -->
+
+  <script src="js/main.js?v=22"></script>
 </body>
 </html>

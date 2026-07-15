@@ -411,29 +411,35 @@
     }
   }
 
-  /* ── Sticky header ─────────────────────────────────────── */
+  /* ── Sticky header ─────────────────────────────────────────
+     Null-guarded: the Squarespace embed strips the header/footer
+     and uses the site's own nav, so these elements may not exist. */
   const header = document.getElementById("siteHeader");
-  const onScroll = () => {
-    header.classList.toggle("is-scrolled", window.scrollY > 24);
-  };
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  if (header) {
+    const onScroll = () => {
+      header.classList.toggle("is-scrolled", window.scrollY > 24);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
 
   /* ── Mobile nav ────────────────────────────────────────── */
   const navToggle = document.getElementById("navToggle");
   const mainNav = document.getElementById("mainNav");
 
-  navToggle.addEventListener("click", () => {
-    const open = mainNav.classList.toggle("is-open");
-    navToggle.setAttribute("aria-expanded", String(open));
-  });
+  if (navToggle && mainNav) {
+    navToggle.addEventListener("click", () => {
+      const open = mainNav.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", String(open));
+    });
 
-  mainNav.addEventListener("click", (e) => {
-    if (e.target.closest("a") && !e.target.closest(".nav-drop-toggle")) {
-      mainNav.classList.remove("is-open");
-      navToggle.setAttribute("aria-expanded", "false");
-    }
-  });
+    mainNav.addEventListener("click", (e) => {
+      if (e.target.closest("a") && !e.target.closest(".nav-drop-toggle")) {
+        mainNav.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
 
   /* ── Nav dropdowns (click/tap toggle; hover handled by CSS) ── */
   const closeDropdowns = (except) => {
