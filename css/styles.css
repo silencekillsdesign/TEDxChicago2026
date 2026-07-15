@@ -642,28 +642,6 @@ sup { font-size: 0.55em; }
 }
 .hero-meta .dot { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
 
-.scroll-cue {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 56px;
-  background: rgba(171, 188, 207, 0.25);
-  overflow: hidden;
-  z-index: 1;
-}
-.scroll-cue span {
-  position: absolute;
-  top: -50%;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  background: var(--red);
-  animation: cue 1.8s ease-in-out infinite;
-}
-@keyframes cue { to { top: 110%; } }
-
 /* ── Marquee ───────────────────────────────────────────────── */
 .marquee {
   overflow: hidden;
