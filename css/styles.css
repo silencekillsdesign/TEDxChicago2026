@@ -1417,14 +1417,14 @@ body.modal-open { overflow: hidden; }
 .speaker-modal-dialog {
   position: relative;
   z-index: 1;
-  width: min(760px, 100%);
-  max-height: min(88vh, 900px);
-  overflow-y: auto;
+  width: 85vw;
+  height: 85vh;
+  overflow: hidden; /* the body column scrolls, so the portrait stays put */
   background: var(--navy);
   border-top: 3px solid var(--red);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: minmax(240px, 38%) 1fr;
   opacity: 0;
   transform: translateY(18px) scale(0.98);
   transition: opacity 0.28s ease, transform 0.28s ease;
@@ -1433,8 +1433,12 @@ body.modal-open { overflow: hidden; }
   opacity: 1;
   transform: none;
 }
+/* Stacked: portrait on top, bio scrolls beneath it. */
 @media (max-width: 680px) {
-  .speaker-modal-dialog { grid-template-columns: 1fr; }
+  .speaker-modal-dialog {
+    grid-template-columns: 1fr;
+    grid-template-rows: 38vh 1fr;
+  }
 }
 
 .speaker-modal-watermark {
@@ -1481,6 +1485,7 @@ body.modal-open { overflow: hidden; }
   position: relative;
   z-index: 1;
   padding: clamp(1.5rem, 3vw, 2.25rem);
+  overflow-y: auto;
 }
 
 .speaker-modal-tags {
