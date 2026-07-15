@@ -1438,24 +1438,30 @@ body.modal-open { overflow: hidden; }
 @media (max-width: 680px) {
   .speaker-modal-dialog {
     grid-template-columns: minmax(0, 42%) 1fr;
-    grid-template-rows: minmax(34vh, auto) 1fr;
+    /* auto (not 1fr) so rows size to content and the dialog can overflow */
+    grid-template-rows: minmax(34vh, auto) auto;
     grid-template-areas:
       "media head"
       "rest  rest";
+    align-content: start;
   }
   .speaker-modal-media { grid-area: media; }
   /* Let head + rest become grid items of the dialog itself. */
   .speaker-modal-body { display: contents; }
   .speaker-modal-head {
     grid-area: head;
-    overflow-y: auto;
     padding: 1.25rem 1.25rem 1rem;
     padding-right: 3.25rem; /* clear the close button */
   }
   .speaker-modal-rest {
     grid-area: rest;
-    overflow-y: auto;
     padding: 0 1.25rem 1.25rem;
+  }
+  /* The whole card scrolls as one — the portrait scrolls away with the
+     text rather than the columns scrolling independently. */
+  .speaker-modal-dialog {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -1487,6 +1493,16 @@ body.modal-open { overflow: hidden; }
   transition: background 0.2s, border-color 0.2s;
 }
 .speaker-modal-close:hover { background: var(--red); border-color: var(--red); }
+/* Mobile scrolls the whole dialog, so pin the close button to the viewport
+   instead — the dialog is 85vw x 85vh centred, putting its top-right corner
+   7.5vh / 7.5vw in. Must come after the base rule above to win. */
+@media (max-width: 680px) {
+  .speaker-modal-close {
+    position: fixed;
+    top: calc(7.5vh + 0.75rem);
+    right: calc(7.5vw + 0.75rem);
+  }
+}
 
 .speaker-modal-media {
   position: relative;
