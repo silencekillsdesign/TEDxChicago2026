@@ -24,7 +24,7 @@
       idea: "Our next generation of textiles will be inspired by nature’s structures — like butterfly wings that create color without dye and strength without bulk — to design fabrics that serve function without generating waste.",
       tags: ["Bio-inspired", "Sustainable Design", "Textile Innovation"],
       photo: "assets/speakers/cecile-chazot.png",
-      photoBody: null,
+      photoBody: "assets/speakers/cecile-chazot-body.png",
       bio: [
         "Prof. Cécile Chazot is the Julia Weertman Assistant Professor of Materials Science and Engineering at Northwestern University, where she leads the Sustainable Polymer Innovation Laboratory (SPIn Lab). Her team rethinks how our fibers, fabrics, and plastics are made, drawing on nature’s four billion years of materials engineering to build textiles that perform without costing the earth.",
         "Cecile earned her Ph.D. in Materials Science and Engineering from MIT and her M.Sc. from Mines ParisTech in France. She is also a co-founder of MICRO, a remote education program that opens doors for undergraduates across the country to conduct research in materials science, a reflection of her conviction that who gets to do the science shapes what the science becomes. Her work at the intersection of innovation and education has been recognized through prestigious early-career awards from the Department of Energy and the Department of Defense, as well as by the Materials Research Society, which honored her with a Graduate Student Award and the Arthur Nowick Award for her dedication to teaching and mentoring."
@@ -164,21 +164,6 @@
       bio: [
         "Manuela Zoninsein doesn’t believe people need to change; she believes systems do. As CEO and Co-Founder of Chicago-based Kadeya, she built the world’s first closed-loop beverage vending system, a bottling plant, dishwasher, and soda fountain in a single machine that vends a drink in a reusable bottle, takes the empty back, and sanitizes it for the next person. The mission: make reuse so frictionless that single-use becomes the inconvenient option.",
         "A serial climate entrepreneur, Manuela previously launched two agritech ventures, including Brazil’s largest online marketplace for smallholder farmers, and led international business development at Palantir Technologies. Her conviction was forged watching China shift from reuse to single-use at massive scale, and sharpened at MIT Sloan, where she earned her MBA. Kadeya’s work has been honored with a Fast Company World Changing Ideas Award and featured by Forbes and CBS, one washed, refilled, returned bottle at a time."
-      ]
-    },
-    {
-      id: "mary-meg-mccarthy",
-      name: "Mary Meg McCarthy",
-      nameLines: ["Mary Meg", "McCarthy"],
-      role: "Executive Director Emeritus, National Immigrant Justice Center",
-      formal: "",
-      idea: "",
-      tags: [],
-      photo: "assets/speakers/mary-meg-mccarthy.png",
-      photoBody: null,
-      bio: [
-        "For four decades, Mary Meg McCarthy has worked on the front lines of human rights, defending the principle that justice is something a community builds and protects together. As longtime leader of Chicago’s National Immigrant Justice Center (NIJC), she grew the organization into one of the nation’s foremost immigrant and human rights advocates, anchored by an extraordinary network of more than 1,500 pro bono attorneys serving roughly 10,000 immigrants, refugees, and asylum seekers each year.",
-        "A Notre Dame and Loyola University Chicago School of Law graduate, Mary Meg began her career safeguarding the rights of individuals living under dictatorship in Chile, an experience that shaped her lifelong conviction about what holds the rule of law in place. An expert who has testified before Congress and chaired the American Bar Association’s Commission on Immigration, she has spent her life proving that the most powerful protection against injustice is the organized solidarity of ordinary people who refuse to look away."
       ]
     },
     {

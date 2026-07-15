@@ -1433,11 +1433,29 @@ body.modal-open { overflow: hidden; }
   opacity: 1;
   transform: none;
 }
-/* Stacked: portrait on top, bio scrolls beneath it. */
+/* Mobile: portrait + head (tags/name/titles) share a two-column top row,
+   with the idea + bio dropping full-width beneath and scrolling. */
 @media (max-width: 680px) {
   .speaker-modal-dialog {
-    grid-template-columns: 1fr;
-    grid-template-rows: 38vh 1fr;
+    grid-template-columns: minmax(0, 42%) 1fr;
+    grid-template-rows: minmax(34vh, auto) 1fr;
+    grid-template-areas:
+      "media head"
+      "rest  rest";
+  }
+  .speaker-modal-media { grid-area: media; }
+  /* Let head + rest become grid items of the dialog itself. */
+  .speaker-modal-body { display: contents; }
+  .speaker-modal-head {
+    grid-area: head;
+    overflow-y: auto;
+    padding: 1.25rem 1.25rem 1rem;
+    padding-right: 3.25rem; /* clear the close button */
+  }
+  .speaker-modal-rest {
+    grid-area: rest;
+    overflow-y: auto;
+    padding: 0 1.25rem 1.25rem;
   }
 }
 
@@ -1480,6 +1498,13 @@ body.modal-open { overflow: hidden; }
 }
 .speaker-modal-media .portrait { position: absolute; inset: 0; display: grid; place-items: end center; }
 .speaker-modal-media .portrait svg { width: 82%; height: auto; fill: rgba(171, 188, 207, 0.3); }
+
+/* Modal photos run untreated — no duotone/grain, unlike the cards. */
+.speaker-modal-media .portrait.has-photo img {
+  filter: none;
+  mix-blend-mode: normal;
+}
+.speaker-modal-media .portrait.has-photo::after { content: none; }
 
 .speaker-modal-body {
   position: relative;
