@@ -472,6 +472,29 @@
   /* ── Carousels (prev/next scroll one card; swipe via native
          scroll-snap; optional auto-advance) ─────────────────── */
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Hero background video: honor reduced-motion by stopping it and
+     letting the gradient fallback underneath show instead. Otherwise
+     play only while the hero is on screen — this also recovers from
+     the browser pausing background media (tab hidden, energy saver). */
+  const heroVideo = document.querySelector(".hero-video");
+  if (heroVideo && reducedMotion) {
+    heroVideo.removeAttribute("autoplay");
+    heroVideo.pause();
+    heroVideo.style.display = "none";
+  } else if (heroVideo) {
+    const tryPlay = () => heroVideo.play().catch(() => {});
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => (e.isIntersecting ? tryPlay() : heroVideo.pause())),
+        { threshold: 0.15 }
+      ).observe(heroVideo);
+    }
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) tryPlay();
+    });
+  }
   const cardStep = (track) => {
     const card = track.querySelector(":scope > *");
     /* A real 0px gap is valid (the quote track has none), so only fall

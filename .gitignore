@@ -1,3 +1,7 @@
 desktop.ini
 Thumbs.db
 .DS_Store
+
+# 35 MB source master — over jsDelivr's 20 MB limit; the site uses the
+# compressed assets/video/hero-video.mp4 derived from it via ffmpeg.
+assets/video/tedx-chicago2026-hero-video.mp4

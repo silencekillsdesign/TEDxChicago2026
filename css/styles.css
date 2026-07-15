@@ -584,6 +584,16 @@ body { margin: 0; }
     linear-gradient(180deg, #0d1421 0%, var(--ink) 55%, #05070d 100%);
 }
 
+/* Background video sits over the gradient stand-in (which doubles as
+   the loading/reduced-motion fallback) and under the skyline + scrim. */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .hero-skyline {
   position: absolute;
   left: 0; right: 0; bottom: 0;
@@ -593,10 +603,12 @@ body { margin: 0; }
 .hero-skyline svg { width: 100%; height: 100%; }
 .hero-skyline path { fill: #05070d; }
 
+/* Darker than the old gradient-only version: keeps the type legible
+   over the moving video. */
 .hero-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(7,11,20,0.55) 0%, rgba(7,11,20,0.1) 45%, rgba(7,11,20,0.65) 100%);
+  background: linear-gradient(180deg, rgba(7,11,20,0.65) 0%, rgba(7,11,20,0.45) 45%, rgba(7,11,20,0.8) 100%);
 }
 
 .hero-inner {
