@@ -205,7 +205,7 @@
       idea: "A cohort of cognitively resilient older adults reveals how much the brain at death can teach us about life, including the possibility of growth and vitality in old age.",
       tags: ["Brain Aging", "Medical Paradigm Shift", "Gift of Life & Death"],
       photo: "assets/speakers/tamar-gefen.png",
-      photoBody: null,
+      photoBody: "assets/speakers/tamar-gefen-body.png",
       bio: [
         "Dr. Tamar Gefen studies people across the spectrum of aging who are rewriting our traditional assumptions about the aging human brain. As an Associate Professor of Psychiatry and Behavioral Sciences at the renowned Mesulam Institute at Northwestern University’s Feinberg School of Medicine, she directs the Laboratory for Translational Neuropsychology and helps lead the Northwestern SuperAging Program, a quarter-century study of adults over 80 whose memory rivals that of people decades younger.",
         "Her work focuses on bridging pre and post-mortem findings in atypical trajectories of aging, ranging from neurodegenerative diseases to SuperAging. A 2023 Toffler Scholar whose research regularly reaches national audiences, Tamar approaches the brain with a rare blend of scientific rigor and human wonder, turning a population most of us overlook into an opportunity to question the inevitability of decline in old age."
