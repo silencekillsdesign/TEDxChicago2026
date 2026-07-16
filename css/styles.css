@@ -662,15 +662,12 @@ body { margin: 0; }
   margin-inline: auto;
 }
 
-.hero-subtitle {
-  margin-top: 2rem;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.4rem, 3.2vw, 2.1rem);
-  letter-spacing: 0.06em;
-  line-height: 1.1;
-  color: var(--red);
-  text-transform: uppercase;
+/* Four Chicago-flag stars (chi-stars.svg, brand red baked in) in the
+   old subtitle slot. Native ratio 99.76:16. */
+.hero-stars {
+  margin: 2rem auto 0;
+  width: clamp(200px, 28vw, 320px);
+  height: auto;
 }
 
 .hero-ctas {
