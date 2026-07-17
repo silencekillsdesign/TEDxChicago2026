@@ -264,7 +264,13 @@ body { margin: 0; }
 .section-lede.left { margin-inline: 0; text-align: left; }
 
 /* ── The Message ────────────────────────────────────────────── */
-#message { position: relative; overflow: hidden; }
+/* Tighter than the default section padding — no section-head here,
+   the lockup + copy carry the section on their own. */
+#message {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(3rem, 5vw, 4.5rem);
+}
 /* Content (eyebrow + copy) rides above the background photo. */
 #message .tedx-container { position: relative; z-index: 1; }
 
@@ -346,7 +352,9 @@ body { margin: 0; }
     -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 100%);
     mask-image: linear-gradient(to bottom, #000 45%, transparent 100%);
   }
-  #message .message-grid { margin-top: calc(96vw - 10rem); }
+  /* Clears the 96vw image so the copy starts in its faded tail
+     (retuned after the section-head was removed). */
+  #message .message-grid { margin-top: calc(80vw - 3rem); }
 }
 .message-media::after {
   content: "";
