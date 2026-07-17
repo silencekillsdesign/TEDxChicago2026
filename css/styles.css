@@ -309,9 +309,11 @@ body { margin: 0; }
   pointer-events: none;
   background: rgba(7, 11, 20, 0.5);
 }
-/* White We The People lockup centered on the photo (overrides the
-   full-bleed img rule above). */
+/* White We The People lockup, centered on the photo (overrides the
+   full-bleed img rule above). Mobile-only — on desktop the lockup
+   heads the copy column instead (.copy-lockup). */
 .message-media .media-lockup {
+  display: none;
   inset: auto;
   left: 50%;
   top: 50%;
@@ -320,6 +322,19 @@ body { margin: 0; }
   height: auto;
   object-fit: contain;
   z-index: 3;
+}
+@media (max-width: 700px) {
+  .message-media .media-lockup { display: block; }
+}
+
+/* Desktop: the lockup sits above the copy. */
+.copy-lockup {
+  width: min(60%, 400px);
+  height: auto;
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+@media (max-width: 700px) {
+  .copy-lockup { display: none; }
 }
 @media (max-width: 700px) {
   /* Full-bleed from the section's very top, fading out at the bottom;
