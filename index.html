@@ -84,7 +84,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=48">
+  <link rel="stylesheet" href="css/styles.css?v=50">
 </head>
 <body>
   <!-- All styling is scoped to this wrapper so the embed can't restyle
@@ -583,11 +583,14 @@
       <div class="speaker-modal-body">
         <!-- Head sits beside the portrait on mobile; the rest drops below. -->
         <div class="speaker-modal-head">
-          <div class="speaker-modal-tags" id="speakerModalTags"></div>
           <h3 class="speaker-modal-name" id="speakerModalName"></h3>
           <p class="speaker-modal-role" id="speakerModalRole"></p>
           <p class="speaker-modal-formal" id="speakerModalFormal"></p>
         </div>
+
+        <!-- Tags ride between the head and the bio as a single-line,
+             horizontally scrollable strip. -->
+        <div class="speaker-modal-tags" id="speakerModalTags"></div>
 
         <div class="speaker-modal-rest">
           <div class="speaker-modal-idea" id="speakerModalIdea"></div>

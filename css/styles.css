@@ -1562,21 +1562,35 @@ body.modal-open { overflow: hidden; }
 @media (max-width: 680px) {
   .speaker-modal-dialog {
     grid-template-columns: minmax(0, 42%) 1fr;
-    /* auto (not 1fr) so rows size to content and the dialog can overflow */
-    grid-template-rows: minmax(34vh, auto) auto;
+    /* Plain auto rows: minmax(34vh, auto) gets CLAMPED inside the fixed
+       85vh dialog and made the head overflow under the bio. The row now
+       sizes to the head's content; the media's own min-height keeps the
+       portrait tall when the head is short. */
+    grid-template-rows: auto auto auto;
     grid-template-areas:
       "media head"
+      "tags  tags"
       "rest  rest";
     align-content: start;
   }
-  .speaker-modal-media { grid-area: media; }
-  /* Let head + rest become grid items of the dialog itself. */
+  .speaker-modal-media { grid-area: media; min-height: 34vh; }
+  /* Let head + tags + rest become grid items of the dialog itself. */
   .speaker-modal-body { display: contents; }
   .speaker-modal-head {
     grid-area: head;
     padding: 1.25rem 1.25rem 1rem;
     padding-right: 3.25rem; /* clear the close button */
   }
+  .speaker-modal-tags {
+    grid-area: tags;
+    padding: 0.9rem 1.25rem 0;
+    margin-bottom: 0.25rem;
+    /* The fixed-height dialog squeezes auto rows; without this the row
+       collapses and squashes the pills to half height. */
+    min-height: max-content;
+    align-items: flex-start;
+  }
+  .speaker-modal-tags .tag-pill { height: max-content; }
   .speaker-modal-rest {
     grid-area: rest;
     padding: 0 1.25rem 1.25rem;
@@ -1653,13 +1667,24 @@ body.modal-open { overflow: hidden; }
   overflow-y: auto;
 }
 
+/* Single-line strip between the head and the bio; overflowing pills
+   scroll horizontally instead of wrapping. */
 .speaker-modal-tags {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.4rem;
   margin-bottom: 1rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
-.speaker-modal-tags .tag-pill { font-size: 0.62rem; padding: 0.34rem 0.6rem; }
+.speaker-modal-tags::-webkit-scrollbar { display: none; }
+.speaker-modal-tags .tag-pill {
+  font-size: 0.62rem;
+  padding: 0.34rem 0.6rem;
+  white-space: nowrap;
+  flex: none;
+}
 
 .speaker-modal-name {
   font-family: var(--font-display);
