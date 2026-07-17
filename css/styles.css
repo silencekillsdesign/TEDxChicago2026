@@ -1579,8 +1579,10 @@ body.modal-open { overflow: hidden; }
   .speaker-modal-head {
     grid-area: head;
     padding: 1.25rem 1.25rem 1rem;
-    padding-right: 3.25rem; /* clear the close button */
   }
+  /* Only the name (top of the column) needs to dodge the close button —
+     the role/title lines below it can use the full column width. */
+  .speaker-modal-head .speaker-modal-name { padding-right: 2.25rem; }
   .speaker-modal-tags {
     grid-area: tags;
     padding: 0.9rem 1.25rem 0;
