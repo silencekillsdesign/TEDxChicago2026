@@ -268,17 +268,21 @@ body { margin: 0; }
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: start;
+  /* stretch (not start): the photo column fills the section's full height */
+  align-items: stretch;
 }
 @media (max-width: 700px) {
   .message-grid { grid-template-columns: 1fr; }
 }
 
+/* Full-height photo that dissolves into the navy section background:
+   the mask fades the whole element (image + grain) out to the right. */
 .message-media {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 3 / 4;
-  background: var(--navy);
+  min-height: 420px;
+  -webkit-mask-image: linear-gradient(to right, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 55%, transparent 100%);
 }
 .message-media img {
   position: absolute;
@@ -286,21 +290,15 @@ body { margin: 0; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Duotone: desaturate then tint navy/sky to match the brand's
-     on-the-street photography treatment. */
-  filter: grayscale(1) contrast(1.1) brightness(0.9);
-  mix-blend-mode: luminosity;
 }
-.message-media::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background:
-    linear-gradient(160deg, rgba(171, 188, 207, 0.55), rgba(36, 51, 69, 0.85)),
-    var(--navy);
-  mix-blend-mode: color;
-  pointer-events: none;
+@media (max-width: 700px) {
+  /* Full-width on mobile, fading out at the bottom instead. */
+  .message-media {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  }
 }
 .message-media::after {
   content: "";

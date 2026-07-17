@@ -5,3 +5,6 @@ Thumbs.db
 # 35 MB source master — over jsDelivr's 20 MB limit; the site uses the
 # compressed assets/video/hero-video.mp4 derived from it via ffmpeg.
 assets/video/tedx-chicago2026-hero-video.mp4
+
+# 2.1 MB source master; the site uses the resized chicago-l-sunset.jpg.
+assets/images/max-bender-3A3IkRM7Y2o-unsplash.jpg
