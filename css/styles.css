@@ -1302,6 +1302,7 @@ body { margin: 0; }
   margin-inline: auto;
   width: 100%;
 }
+.partner-grid--lead       { grid-template-columns: 1fr; max-width: 460px; }
 .partner-grid--beacon     { grid-template-columns: repeat(2, 1fr); max-width: 680px; }
 .partner-grid--campfire   { grid-template-columns: repeat(3, 1fr); max-width: 860px; }
 .partner-grid--torchlight { grid-template-columns: repeat(4, 1fr); max-width: 1000px; }
