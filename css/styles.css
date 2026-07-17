@@ -300,6 +300,27 @@ body { margin: 0; }
   height: 100%;
   object-fit: cover;
 }
+/* Darkening layer over the photo, under the lockup + grain. */
+.message-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(7, 11, 20, 0.5);
+}
+/* White We The People lockup centered on the photo (overrides the
+   full-bleed img rule above). */
+.message-media .media-lockup {
+  inset: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(78%, 440px);
+  height: auto;
+  object-fit: contain;
+  z-index: 3;
+}
 @media (max-width: 700px) {
   /* Full-bleed from the section's very top, fading out at the bottom;
      the copy starts inside the faded tail (see .message-grid margin). */
