@@ -56,17 +56,6 @@ body { margin: 0; }
   overflow-x: hidden;
 }
 
-/* Squarespace's Fluid Engine grid places the code block inside gutter
-   columns (~23px each side on mobile). Break the embed out to true
-   full-bleed. Applies only when embedded — locally #tedx-root is a
-   direct child of body, so this rule doesn't match. */
-:not(body) > #tedx-root {
-  margin-inline: calc(50% - 50vw);
-}
-/* The breakout makes the root exactly viewport-wide, which can spawn a
-   horizontal scrollbar on desktop; clip it on pages hosting the embed. */
-body:has(#tedx-root) { overflow-x: hidden; }
-
 :where(#tedx-root) img, :where(#tedx-root) svg { display: block; max-width: 100%; }
 :where(#tedx-root) a { color: inherit; text-decoration: none; }
 :where(#tedx-root) sup { font-size: 0.55em; }
