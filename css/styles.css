@@ -1414,28 +1414,35 @@ body { margin: 0; }
   color: var(--sky);
 }
 
-/* ── Food & beverage ───────────────────────────────────────── */
-.food-card {
-  width: clamp(200px, 21vw, 250px);
-  text-align: center;
-}
-.food-logo {
-  aspect-ratio: 1;
+/* ── Food & beverage — vendor gallery ──────────────────────── */
+.vendor-gallery {
   display: grid;
-  place-items: center;
-  background: var(--navy);
-  border: 1px solid rgba(171, 188, 207, 0.12);
-  color: var(--slate);
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  transition: border-color 0.25s;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.5rem, 1.2vw, 0.85rem);
 }
-.food-card:hover .food-logo { border-color: rgba(230, 43, 30, 0.6); }
-.food-card h3 { font-size: 0.95rem; font-weight: 600; }
-.food-card h3 a { border-bottom: 1px solid var(--red); padding-bottom: 2px; }
-.food-card h3 a:hover { color: #fff; }
+@media (max-width: 900px) { .vendor-gallery { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) { .vendor-gallery { grid-template-columns: repeat(2, 1fr); } }
+
+.vendor-shot {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.94);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+.vendor-shot:hover {
+  filter: brightness(1.05);
+  transform: scale(1.015);
+}
+
+.vendor-note {
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  text-align: center;
+  color: var(--slate);
+  font-size: 0.85rem;
+  font-style: italic;
+}
 
 /* ── Get involved / pre-footer ─────────────────────────────── */
 .section-involved {

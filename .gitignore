@@ -8,3 +8,6 @@ assets/video/tedx-chicago2026-hero-video.mp4
 
 # 2.1 MB source master; the site uses the resized chicago-l-sunset.jpg.
 assets/images/max-bender-3A3IkRM7Y2o-unsplash.jpg
+
+# Full-res vendor photo masters; the site uses the resized vendor-N.jpg.
+assets/vendors/*_k.jpg
