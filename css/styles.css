@@ -1145,6 +1145,13 @@ body { margin: 0; }
 }
 @media (max-width: 1000px) { .performer-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 540px)  { .performer-grid { grid-template-columns: 1fr; } }
+/* Pre-announcement state: the coming-soon card is the grid's only child,
+   so center it at normal card width instead of pinning to column 1. */
+.performer-grid > .coming-soon:only-child {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(100%, 280px);
+}
 
 .performer-card {
   background: var(--navy);
