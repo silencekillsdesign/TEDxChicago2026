@@ -35,13 +35,13 @@
       name: "Clarissa Flores",
       nameLines: ["Clarissa", "Flores"],
       role: "Cultural Strategist in Sports, Hospitality & Community",
-      formal: "Founder & CEO, Level Sporting Club | Director of Operations, Tao Group Hospitality",
-      idea: "Women’s sports have always had the fans. What they’ve needed was equitable infrastructure, investment, and cultural primacy, and building that infrastructure, starting in Chicago, changes business, culture, and the future for girls everywhere.",
+      formal: "Founder & CEO, Level Sporting Club",
+      idea: "Women’s sports have always had the fans. What they’ve needed was equitable infrastructure, investment, and cultural primacy, and building that infrastructure, starting in Chicago, changed business, culture, and the future for girls everywhere.",
       tags: ["Infrastructure Equity", "Women’s Sports", "Cultural Investment"],
       photo: "assets/speakers/clarissa-flores.png",
       photoBody: "assets/speakers/clarissa-flores-body.png",
       bio: [
-        "Clarissa Flores is Chicago native, Whitney Young alum, and former Northwestern University basketball player who went on to compete overseas and for the Puerto Rican national team, Clarissa has spent more than two decades in hospitality, including her current role as Director of Operations for Tao Group Hospitality in Chicago.",
+        "Clarissa Flores is Chicago native, Whitney Young alum, and former Northwestern University basketball player who went on to compete overseas and for the Puerto Rican national team. Clarissa has spent more than two decades in hospitality.",
         "In 2026, she brought her two worlds together as Founder and CEO of Level Sporting Club, Wrigleyville’s first women’s sports bar, a two-level space steps from Wrigley Field where women’s sports are the default, not the request. What began as pop-up watch parties around the city became a permanent home for a fandom that has been showing up for decades, backed by an ownership group built largely of former athletes and women with deep ties to sports. Her mission is simple and structural: prove that women’s sports can anchor a business, and level the playing field by building the infrastructure the fans already earned."
       ]
     },
