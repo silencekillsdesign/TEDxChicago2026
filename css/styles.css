@@ -1336,6 +1336,23 @@ body { margin: 0; }
   background: rgba(171, 188, 207, 0.04);
 }
 
+/* Filled slot: a real partner logo instead of the dashed placeholder. */
+.partner-logo { position: relative; }
+.partner-logo.is-filled {
+  border: 1px solid rgba(171, 188, 207, 0.12);
+}
+/* Absolutely positioned so an oddly-shaped (e.g. square) logo can't grow
+   its cell taller than the 5:3 aspect-ratio; padding insets it from the
+   border, object-fit keeps it whole and centered. */
+.partner-logo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: clamp(0.75rem, 2.5vw, 1.4rem);
+  object-fit: contain;
+}
+
 /* ── Venue / schedule ──────────────────────────────────────── */
 .venue-grid { align-items: start; }
 
