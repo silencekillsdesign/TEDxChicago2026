@@ -264,25 +264,34 @@ body { margin: 0; }
 .section-lede.left { margin-inline: 0; text-align: left; }
 
 /* ── The Message ────────────────────────────────────────────── */
+#message { position: relative; overflow: hidden; }
+/* Content (eyebrow + copy) rides above the background photo. */
+#message .tedx-container { position: relative; z-index: 1; }
+
 .message-grid {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: clamp(1.5rem, 4vw, 3rem);
-  /* stretch (not start): the photo column fills the section's full height */
-  align-items: stretch;
 }
+/* Column 1 is an empty spacer — the photo lives behind it. */
+.message-grid .message-copy { grid-column: 2; }
 @media (max-width: 700px) {
   .message-grid { grid-template-columns: 1fr; }
+  .message-grid .message-copy { grid-column: 1; }
 }
 
-/* Full-height photo that dissolves into the navy section background:
-   the mask fades the whole element (image + grain) out to the right. */
+/* Background photo: anchored to the section itself, so it spans the
+   full section height — "The Message" eyebrow sits over it. The mask
+   fades the whole element (image + grain) into the navy to the right. */
 .message-media {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 40vw;
   overflow: hidden;
-  min-height: 420px;
-  -webkit-mask-image: linear-gradient(to right, #000 55%, transparent 100%);
-  mask-image: linear-gradient(to right, #000 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, #000 40%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 40%, transparent 100%);
 }
 .message-media img {
   position: absolute;
@@ -292,13 +301,16 @@ body { margin: 0; }
   object-fit: cover;
 }
 @media (max-width: 700px) {
-  /* Full-width on mobile, fading out at the bottom instead. */
+  /* Full-bleed from the section's very top, fading out at the bottom;
+     the copy starts inside the faded tail (see .message-grid margin). */
   .message-media {
-    min-height: 0;
-    aspect-ratio: 4 / 3;
-    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    bottom: auto;
+    width: 100%;
+    height: 96vw;
+    -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 45%, transparent 100%);
   }
+  #message .message-grid { margin-top: calc(96vw - 10rem); }
 }
 .message-media::after {
   content: "";
