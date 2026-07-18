@@ -745,7 +745,19 @@ body { margin: 0; }
   color: var(--slate);
   flex-wrap: wrap;
 }
-.hero-meta .dot { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
+/* Red pixel "x" separator (nods to the TEDx mark). */
+.hero-meta .meta-x {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--red);
+}
+/* Mobile: date and venue stack, with the x between them. */
+@media (max-width: 560px) {
+  .hero-meta { flex-direction: column; gap: 0.5rem; }
+}
 
 /* ── Marquee ───────────────────────────────────────────────── */
 .marquee {
