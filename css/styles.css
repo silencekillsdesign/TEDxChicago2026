@@ -1308,28 +1308,21 @@ body { margin: 0; }
   margin-bottom: 1.5rem;
 }
 
+/* Flexbox so partial rows center; --tile sets per-tier logo size
+   (bigger tier = bigger tile), capped so phones still fit 2-up. */
 .partner-grid {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.25rem;
-  margin-inline: auto;
   width: 100%;
 }
-.partner-grid--lead       { grid-template-columns: 1fr; max-width: 460px; }
-.partner-grid--beacon     { grid-template-columns: repeat(2, 1fr); max-width: 680px; }
-.partner-grid--campfire   { grid-template-columns: repeat(3, 1fr); max-width: 860px; }
-.partner-grid--torchlight { grid-template-columns: repeat(4, 1fr); max-width: 1000px; }
-.partner-grid--flame      { grid-template-columns: repeat(6, 1fr); }
-
-@media (max-width: 860px) {
-  .partner-grid--beacon,
-  .partner-grid--campfire   { grid-template-columns: repeat(2, 1fr); }
-  .partner-grid--torchlight,
-  .partner-grid--flame      { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 480px) {
-  .partner-grid--torchlight,
-  .partner-grid--flame      { grid-template-columns: repeat(2, 1fr); }
-}
+.partner-grid .partner-logo { flex: 0 0 var(--tile); }
+.partner-grid--lead       { --tile: min(460px, 100%); }
+.partner-grid--beacon     { --tile: min(320px, 100%); }
+.partner-grid--campfire   { --tile: min(270px, calc(50% - 0.625rem)); }
+.partner-grid--torchlight { --tile: min(230px, calc(50% - 0.625rem)); }
+.partner-grid--flame      { --tile: min(180px, calc(50% - 0.625rem)); }
 
 .partner-logo {
   aspect-ratio: 5 / 3;
