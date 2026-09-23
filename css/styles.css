@@ -896,6 +896,10 @@ body { margin: 0; }
 .speaker-poster .logo { z-index: 2; color: var(--sky); }
 .speaker-card.alt .speaker-poster .logo { color: var(--navy); }
 
+/* Performer social/web links render as anchor pills in the modal. */
+a.tag-pill { text-decoration: none; transition: background 0.2s; }
+a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
+
 .tag-pill {
   background: var(--red);
   color: #fff;

@@ -253,10 +253,13 @@
       role: "Cyber Punk Rock Opera",
       formal: "Performing “We the Ppl Now! (Hey Hey, Ho Ho)” — music by Mike Przygoda, lyrics by Derek Lee McPhatter, directed by Dre Robinson",
       photo: "assets/performers/water-riot.jpg",
+      links: [
+        { label: "waterriot.live", url: "https://waterriot.live" }
+      ],
       bio: [
         "water riot is a new cyber punk rock opera by playwright and producer Derek Lee McPhatter, with music by composer Mike Przygoda. The show follows a diverse coalition of activists staging a rock concert as a protest against the privatization of Lake Michigan — weaving themes of environmental justice, community empowerment, and collective resistance into an original score that draws on the under-acknowledged legacy of Black creativity at the foundation of rock, punk, and experimental music. water riot made its debut at the Museum of Contemporary Art Chicago and most recently completed a sold-out concert production residency at the Apollo Theater in Harlem.",
         "For TEDxChicago, the water riot ensemble — directed by Dre Robinson and featuring a dynamic roster of Chicago vocalists and musicians — brings this world to the Harris Theater stage, celebrating the spirit of “We the People” with a special arrangement of one of water riot’s signature songs.",
-        "Featuring Chloé Kiera Khaleeah Johnson, Mike Pope, and Genevieve VenJohnson, with Decoteau Black on guitar, Carmani Edwards on bass, and William Henry on keys. Digital producer: Tony Santiago. waterriot.live"
+        "Featuring Chloé Kiera Khaleeah Johnson, Mike Pope, and Genevieve VenJohnson, with Decoteau Black on guitar, Carmani Edwards on bass, and William Henry on keys. Digital producer: Tony Santiago."
       ]
     },
     {
@@ -265,9 +268,15 @@
       role: "Composer & Pianist",
       formal: "Relax Your Ears",
       photo: "assets/performers/joel-styzens.jpg",
+      links: [
+        { label: "RelaxYourEars.com", url: "https://relaxyourears.com" },
+        { label: "Instagram", url: "https://www.instagram.com/joelstyzens/" },
+        { label: "TikTok", url: "https://www.tiktok.com/@joelstyzens" },
+        { label: "Facebook", url: "https://www.facebook.com/relaxyourears" }
+      ],
       bio: [
         "Joel Styzens crafts music that serves as both a cinematic journey and a soulful retreat. Informed by his background as a drummer, Styzens’ piano work provides a rhythmic, cross-genre pulse — blending classical harmony, world rhythms, and jazz sensibilities with lush cello and violin, melodic saxophone, and textural upright bass and drums. Together, his compositions invite listeners to pause, decompress, and release the noise of daily life. As both an artist and a dedicated hearing health advocate, Styzens pairs his art with a vital mission: protecting your ears so you can enjoy a lifetime of deep listening.",
-        "Styzens earned international acclaim for his album Resonance, named a Top 10 Contemporary Album of the Year by The Guardian, with NPR calling his music “phenomenal” and the BBC describing it as “open-hearted.” A voting member of the Recording Academy, he is an active advocate for music creators’ rights — championing fair streaming models and protecting human artistry in the age of AI. His upcoming album, Handbirds, accompanied by a companion book of original piano scores, is scheduled for release in Spring 2027. Explore the music and connect at RelaxYourEars.com.",
+        "Styzens earned international acclaim for his album Resonance, named a Top 10 Contemporary Album of the Year by The Guardian, with NPR calling his music “phenomenal” and the BBC describing it as “open-hearted.” A voting member of the Recording Academy, he is an active advocate for music creators’ rights — championing fair streaming models and protecting human artistry in the age of AI. His upcoming album, Handbirds, accompanied by a companion book of original piano scores, is scheduled for release in Spring 2027.",
         "Joining this TEDxChicago performance: cellist Herine Koschak, violinist Jinty McTavish, saxophonist Amos Gillespie, bassist Brian Courage, drummer Quin Kirchner, and dancer Damon Green."
       ]
     },
@@ -276,6 +285,10 @@
       name: "Zion Ali",
       role: "Singer, Songwriter & Youth Advocate",
       photo: "assets/performers/zion-ali.jpg",
+      links: [
+        { label: "Instagram", url: "https://www.instagram.com/zionaliofficial/" },
+        { label: "TikTok", url: "https://www.tiktok.com/@zionalimusic" }
+      ],
       bio: [
         "Zion Ali is a Chicago-based singer, songwriter, and youth advocate who uses music to inspire confidence, resilience, and hope in the next generation. Through his original music and dynamic performances, he encourages young people to believe in themselves and use their voices to create positive change. His message has reached audiences across schools, festivals, community organizations, and major stages throughout Chicago and beyond.",
         "Zion has performed at events including Lollapalooza, Taste of Chicago, the Black Women’s Expo, the Bud Billiken Parade, the NAACP National Convention, and for the Chicago Bulls. Whether performing for thousands or leading conversations with young people, he is committed to proving that music can empower communities, spark meaningful dialogue, and remind every person that their story has the power to make an impact."
@@ -285,9 +298,13 @@
       id: "chromaflow",
       name: "ChromaFlow",
       role: "Eco-Immersive Light Artist",
-      formal: "Kristen Youngman — chromaflow.studio",
+      formal: "Kristen Youngman",
       idea: "I harness light and dancing pixels to reveal a story alive in a place, so audiences don’t just observe it, they feel it and become a part of it.",
       photo: "assets/performers/chroma-flow.jpg",
+      links: [
+        { label: "chromaflow.studio", url: "https://chromaflow.studio" },
+        { label: "Instagram", url: "https://www.instagram.com/kristen_youngman/" }
+      ],
       bio: [
         "Kristen Youngman is a Chicago-based eco-immersive artist specializing in large-scale light projections. By transforming architectural and natural spaces into living canvases she blurs the line between the physical, the digital, and the imagination. Her work explores the intersection of art, technology, and the human experience — each installation designed to create meaningful connections between audience and environment, using light as her medium to tell stories and evoke emotion.",
         "As Immersive Director for Tangible Sound, currently on view at the Chicago Cultural Center, she designed Touching Sound, an interactive light painting that places audiences inside a living portrait of the city’s jazz legacy at the storied Velvet Lounge. Her ecological work includes River Rhythms, created with Urban Rivers for Chicago Climate Week at the Wild Mile — projecting mycelium-inspired visuals over live music at the world’s first floating ecopark. That work helped set the stage for Horizon Lines 2050, a citywide conversation hosted by World Business Chicago about her proposal to use mycelium’s water-filtering power to create art sculptures that could help clean the Chicago River."
@@ -454,6 +471,8 @@
         .join("");
       modalTags.innerHTML = (speaker.tags || [])
         .map((t) => `<span class="tag-pill">${escapeHtml(t)}</span>`)
+        .join("") + (speaker.links || [])
+        .map((l) => `<a class="tag-pill" href="${escapeHtml(l.url)}" target="_blank" rel="noopener">${escapeHtml(l.label)}</a>`)
         .join("");
 
       speakerModal.hidden = false;
