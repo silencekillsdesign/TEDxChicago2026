@@ -243,6 +243,71 @@
     }
   ];
 
+  /* Performer lineup — rendered into #performerGrid and opened in the
+     same modal as speakers (openSpeakerModal takes any of these objects;
+     fields a performer lacks — tags, idea — simply don't render). */
+  const PERFORMERS = [
+    {
+      id: "water-riot",
+      name: "water riot ensemble",
+      role: "Cyber Punk Rock Opera",
+      formal: "Performing “We the Ppl Now! (Hey Hey, Ho Ho)” — music by Mike Przygoda, lyrics by Derek Lee McPhatter, directed by Dre Robinson",
+      photo: "assets/performers/water-riot.jpg",
+      bio: [
+        "water riot is a new cyber punk rock opera by playwright and producer Derek Lee McPhatter, with music by composer Mike Przygoda. The show follows a diverse coalition of activists staging a rock concert as a protest against the privatization of Lake Michigan — weaving themes of environmental justice, community empowerment, and collective resistance into an original score that draws on the under-acknowledged legacy of Black creativity at the foundation of rock, punk, and experimental music. water riot made its debut at the Museum of Contemporary Art Chicago and most recently completed a sold-out concert production residency at the Apollo Theater in Harlem.",
+        "For TEDxChicago, the water riot ensemble — directed by Dre Robinson and featuring a dynamic roster of Chicago vocalists and musicians — brings this world to the Harris Theater stage, celebrating the spirit of “We the People” with a special arrangement of one of water riot’s signature songs.",
+        "Featuring Chloé Kiera Khaleeah Johnson, Mike Pope, and Genevieve VenJohnson, with Decoteau Black on guitar, Carmani Edwards on bass, and William Henry on keys. Digital producer: Tony Santiago. waterriot.live"
+      ]
+    },
+    {
+      id: "joel-styzens",
+      name: "Joel Styzens",
+      role: "Composer & Pianist",
+      formal: "Relax Your Ears",
+      photo: "assets/performers/joel-styzens.jpg",
+      bio: [
+        "Joel Styzens crafts music that serves as both a cinematic journey and a soulful retreat. Informed by his background as a drummer, Styzens’ piano work provides a rhythmic, cross-genre pulse — blending classical harmony, world rhythms, and jazz sensibilities with lush cello and violin, melodic saxophone, and textural upright bass and drums. Together, his compositions invite listeners to pause, decompress, and release the noise of daily life. As both an artist and a dedicated hearing health advocate, Styzens pairs his art with a vital mission: protecting your ears so you can enjoy a lifetime of deep listening.",
+        "Styzens earned international acclaim for his album Resonance, named a Top 10 Contemporary Album of the Year by The Guardian, with NPR calling his music “phenomenal” and the BBC describing it as “open-hearted.” A voting member of the Recording Academy, he is an active advocate for music creators’ rights — championing fair streaming models and protecting human artistry in the age of AI. His upcoming album, Handbirds, accompanied by a companion book of original piano scores, is scheduled for release in Spring 2027. Explore the music and connect at RelaxYourEars.com.",
+        "Joining this TEDxChicago performance: cellist Herine Koschak, violinist Jinty McTavish, saxophonist Amos Gillespie, bassist Brian Courage, drummer Quin Kirchner, and dancer Damon Green."
+      ]
+    },
+    {
+      id: "zion-ali",
+      name: "Zion Ali",
+      role: "Singer, Songwriter & Youth Advocate",
+      photo: "assets/performers/zion-ali.jpg",
+      bio: [
+        "Zion Ali is a Chicago-based singer, songwriter, and youth advocate who uses music to inspire confidence, resilience, and hope in the next generation. Through his original music and dynamic performances, he encourages young people to believe in themselves and use their voices to create positive change. His message has reached audiences across schools, festivals, community organizations, and major stages throughout Chicago and beyond.",
+        "Zion has performed at events including Lollapalooza, Taste of Chicago, the Black Women’s Expo, the Bud Billiken Parade, the NAACP National Convention, and for the Chicago Bulls. Whether performing for thousands or leading conversations with young people, he is committed to proving that music can empower communities, spark meaningful dialogue, and remind every person that their story has the power to make an impact."
+      ]
+    },
+    {
+      id: "chromaflow",
+      name: "ChromaFlow",
+      role: "Eco-Immersive Light Artist",
+      formal: "Kristen Youngman — chromaflow.studio",
+      idea: "I harness light and dancing pixels to reveal a story alive in a place, so audiences don’t just observe it, they feel it and become a part of it.",
+      photo: "assets/performers/chroma-flow.jpg",
+      bio: [
+        "Kristen Youngman is a Chicago-based eco-immersive artist specializing in large-scale light projections. By transforming architectural and natural spaces into living canvases she blurs the line between the physical, the digital, and the imagination. Her work explores the intersection of art, technology, and the human experience — each installation designed to create meaningful connections between audience and environment, using light as her medium to tell stories and evoke emotion.",
+        "As Immersive Director for Tangible Sound, currently on view at the Chicago Cultural Center, she designed Touching Sound, an interactive light painting that places audiences inside a living portrait of the city’s jazz legacy at the storied Velvet Lounge. Her ecological work includes River Rhythms, created with Urban Rivers for Chicago Climate Week at the Wild Mile — projecting mycelium-inspired visuals over live music at the world’s first floating ecopark. That work helped set the stage for Horizon Lines 2050, a citywide conversation hosted by World Business Chicago about her proposal to use mycelium’s water-filtering power to create art sculptures that could help clean the Chicago River."
+      ]
+    },
+    {
+      id: "leo-choir",
+      name: "Leo High School Choir",
+      role: "Youth Vocal Ensemble · Closing Act",
+      formal: "The Leo Choir Boys — as seen on America’s Got Talent",
+      photo: "assets/performers/leo-high-school-choir.jpg",
+      bio: [
+        "From Chicago’s South Side to the national stage, the Leo High School Choir — affectionately known as the Leo Choir Boys — has become one of the nation’s most recognized youth vocal ensembles. Known for their powerful harmonies, infectious energy, and unmistakable brotherhood, these young men represent the excellence, faith, discipline, and determination that have defined Leo High School for 100 years. The Choir captured the hearts of millions during Season 20 of NBC’s America’s Got Talent, advancing to the Finals and earning an extraordinary fourth-place finish while proudly living Leo’s enduring motto: Facta Non Verba — Deeds, Not Words.",
+        "Since America’s Got Talent, the Choir has received more than 80 performance invitations. Distinguished appearances include a private performance and meeting with President Barack Obama, a Chicago Bears halftime performance at Soldier Field, a sold-out Juneteenth Celebration at Wrigley Field, the Millennium Park Holiday Sing Along, and events surrounding the Democratic National Convention. The Choir Boys have also taken their artistry into the recording studio — recording “Outside” with GRAMMY-winning artist and proud Leo alumnus Sir the Baptist, and vocals for “Won’t Stop Us” with legendary GRAMMY-winning gospel artist Fred Hammond.",
+        "Their success extends far beyond music: with an average GPA of approximately 3.5 and a 100 percent college acceptance rate, the Choir Boys embody Leo’s commitment to developing young men of character, scholarship, leadership, and service. As Leo High School celebrates its Centennial — 1926 to 2026 — the Choir stands as a powerful reflection of the school’s legacy and its promise for the future, under the leadership of President and Principal Dr. Shaka Rawls, Music Directors Darious Lyles and Nathan Palmer, and Director of Community Partnerships & Choir Manager Yolanda Sandifer-Horton.",
+        "The 2026–27 Leo Choir Boys: Lloyd Eric Amos III, Kriston Sury Bell, Ra’sun James Britten, Jaylen Tyree Curry, Dontae O’Brien Felder, Christian Chauncey Gaines, Maverick Elias Gamble, Tyler Cornelius Greenlee, Rexsell Hardy III, Anthony M. Harper, Royce Bernard Holmes, Jaren Zyaire Johnson, Avion Marshawn King, Blake E. Moore, Nehemiah Levonte Reese, Emanuel J. Smith, Tyrion Keontay Smith, Camren Maurice Speights, Brylian J. Tate, Keon Malachi Thomas, Raivon Jeremiah Thornton, Messiah Williams, Kevin Marcus Wilson, and Kendel Lamont Woods."
+      ]
+    }
+  ];
+
   const escapeHtml = (str) =>
     String(str).replace(/[&<>"']/g, (c) => ({
       "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
@@ -304,6 +369,29 @@
     track.querySelectorAll(".portrait img").forEach(attachPhotoFallback);
   };
   renderSpeakerCards();
+
+  /* ── Render performer cards from PERFORMERS into #performerGrid ── */
+  const renderPerformerCards = () => {
+    const grid = document.getElementById("performerGrid");
+    if (!grid) return;
+    grid.innerHTML = PERFORMERS.map((p) => `
+      <article class="performer-card" data-performer-id="${p.id}"
+               tabindex="0" role="button" aria-haspopup="dialog"
+               aria-label="Read full bio for ${escapeHtml(p.name)}">
+        <div class="performer-photo">
+          <div class="portrait${p.photo ? " has-photo" : ""}" aria-hidden="true">
+            ${p.photo
+              ? `<img src="${escapeHtml(assetUrl(p.photo))}" alt="" loading="lazy">`
+              : PORTRAIT_PLACEHOLDER}
+          </div>
+        </div>
+        <h3 class="performer-name">${escapeHtml(p.name)}</h3>
+        <p class="performer-type">${escapeHtml(p.role)}</p>
+      </article>
+    `).join("");
+    grid.querySelectorAll(".portrait img").forEach(attachPhotoFallback);
+  };
+  renderPerformerCards();
 
   /* ── Speaker bio modal ─────────────────────────────────── */
   const speakerModal = document.getElementById("speakerModal");
@@ -407,6 +495,26 @@
         e.preventDefault();
         const speaker = SPEAKERS.find((s) => s.id === card.dataset.speakerId);
         if (speaker) openSpeakerModal(speaker, card);
+      });
+    }
+
+    /* Performer cards share the same modal. */
+    const performerGrid = document.getElementById("performerGrid");
+    if (performerGrid) {
+      const openFromCard = (card) => {
+        const p = PERFORMERS.find((x) => x.id === card.dataset.performerId);
+        if (p) openSpeakerModal(p, card);
+      };
+      performerGrid.addEventListener("click", (e) => {
+        const card = e.target.closest(".performer-card");
+        if (card) openFromCard(card);
+      });
+      performerGrid.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        const card = e.target.closest(".performer-card");
+        if (!card) return;
+        e.preventDefault();
+        openFromCard(card);
       });
     }
   }

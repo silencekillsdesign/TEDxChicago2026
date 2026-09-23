@@ -1150,20 +1150,23 @@ body { margin: 0; }
 .qdot.is-active { background: var(--red); }
 
 /* ── Performers ────────────────────────────────────────────── */
+/* Flexbox (not grid) so a partial last row centers — e.g. 5 cards
+   render 4 + 1 centered. Basis = quarter width minus the gap share. */
 .performer-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
 }
-@media (max-width: 1000px) { .performer-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 540px)  { .performer-grid { grid-template-columns: 1fr; } }
-/* Pre-announcement state: the coming-soon card is the grid's only child,
-   so center it at normal card width instead of pinning to column 1. */
-.performer-grid > .coming-soon:only-child {
-  grid-column: 1 / -1;
-  justify-self: center;
-  width: min(100%, 280px);
+.performer-grid > .performer-card { flex: 0 0 calc(25% - 1.125rem); }
+@media (max-width: 1000px) {
+  .performer-grid > .performer-card { flex-basis: calc(50% - 0.75rem); }
 }
+@media (max-width: 540px) {
+  .performer-grid > .performer-card { flex-basis: 100%; }
+}
+/* Coming-soon as the only child: normal card width, centered by the flex row. */
+.performer-grid > .coming-soon:only-child { flex-basis: min(100%, 280px); }
 
 .performer-card {
   background: var(--navy);
