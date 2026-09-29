@@ -1222,6 +1222,16 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
 .faq-a p { font-size: 0.9rem; max-width: 68ch; }
 .faq-a a { color: var(--red); font-weight: 600; text-decoration: none; }
 .faq-a a:hover { text-decoration: underline; }
+/* Venue map render comes from the print booklet (white background). */
+.faq-map {
+  display: block;
+  width: min(100%, 560px);
+  height: auto;
+  margin-top: 1rem;
+  background: #fff;
+  padding: 0.75rem;
+  border: 1px solid rgba(171, 188, 207, 0.2);
+}
 
 .performer-card {
   background: var(--navy);
