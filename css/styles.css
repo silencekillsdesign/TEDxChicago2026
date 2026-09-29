@@ -1332,6 +1332,71 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
 .partner-grid--campfire   { --tile: min(270px, calc(50% - 0.625rem)); }
 .partner-grid--torchlight { --tile: min(230px, calc(50% - 0.625rem)); }
 .partner-grid--flame      { --tile: min(180px, calc(50% - 0.625rem)); }
+.partner-grid--collab     { --tile: min(150px, calc(50% - 0.625rem)); }
+
+/* Logos extracted from print (white/dark art) sit on a light tile. */
+.partner-logo.is-light { background: #e9edf3; border-color: transparent; }
+
+/* Artist card Instagram handle */
+.artist-ig {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--red);
+  text-decoration: none;
+}
+.artist-ig:hover { text-decoration: underline; }
+
+/* Named vendor list under the photo gallery */
+.vendor-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 2.5rem;
+  margin-top: 2.5rem;
+}
+@media (max-width: 700px) { .vendor-list { grid-template-columns: 1fr; } }
+.vendor-item h3 { color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+.vendor-item p { font-size: 0.85rem; margin-bottom: 0.3rem; }
+.vendor-item a {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--red);
+  text-decoration: none;
+}
+.vendor-item a:hover { text-decoration: underline; }
+
+/* Beyond the Stage cards */
+.beyond-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 860px) { .beyond-grid { grid-template-columns: 1fr; } }
+.beyond-card {
+  background: var(--navy);
+  border: 1px solid rgba(171, 188, 207, 0.12);
+  border-top: 3px solid var(--red);
+  padding: 1.75rem;
+}
+.beyond-card h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.45rem;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 0.6rem;
+}
+.beyond-when {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.8rem;
+}
+.beyond-card p:not(.beyond-when) { font-size: 0.9rem; }
 
 .partner-logo {
   aspect-ratio: 5 / 3;
