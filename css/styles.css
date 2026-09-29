@@ -1179,6 +1179,8 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
   text-align: center;
   transition: transform 0.25s ease, border-color 0.25s ease;
 }
+/* On a navy section the navy card would vanish — drop to ink for contrast. */
+.section-navy .performer-card { background: var(--ink); }
 .performer-card:hover { transform: translateY(-6px); border-color: rgba(230, 43, 30, 0.6); }
 
 .performer-photo {
