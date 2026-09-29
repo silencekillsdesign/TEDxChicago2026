@@ -91,7 +91,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=65">
+  <link rel="stylesheet" href="css/styles.css?v=66">
 </head>
 <body>
   <!-- All styling is scoped to this wrapper so the embed can't restyle
@@ -850,6 +850,18 @@
   <!-- ══════════════════ SPEAKER BIO MODAL ══════════════════
        Single shared modal; content is injected by main.js from
        the SPEAKERS data array when a card (or Read Bio) is clicked. -->
+  <!-- Partner lightbox: filled by main.js from the clicked tile. -->
+  <div class="partner-lightbox" id="partnerLightbox" hidden>
+    <div class="partner-lightbox-backdrop" data-plb-close></div>
+    <div class="partner-lightbox-card" role="dialog" aria-modal="true" aria-labelledby="plbName">
+      <button type="button" class="speaker-modal-close" data-plb-close aria-label="Close">&times;</button>
+      <div class="plb-logo" id="plbLogo"><img id="plbImg" src="" alt=""></div>
+      <p class="plb-tier" id="plbTier"></p>
+      <h3 class="plb-name" id="plbName"></h3>
+      <p class="plb-blurb" id="plbBlurb"></p>
+    </div>
+  </div>
+
   <div class="speaker-modal" id="speakerModal" hidden>
     <div class="speaker-modal-backdrop" data-modal-close></div>
     <div class="speaker-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="speakerModalName">
@@ -887,6 +899,6 @@
 
   </div><!-- /#tedx-root -->
 
-  <script src="js/main.js?v=29"></script>
+  <script src="js/main.js?v=30"></script>
 </body>
 </html>

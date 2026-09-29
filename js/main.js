@@ -410,6 +410,89 @@
   };
   renderPerformerCards();
 
+  /* ── Partner tooltips + lightbox ───────────────────────────
+     Tiles are static HTML; names come from each logo's alt text,
+     blurbs (from the event booklet) live here. Tiles without a
+     blurb still open the lightbox with name + tier. */
+  const PARTNER_BLURBS = {
+    "CannonDesign": "A global design firm driven by Living-Centered Design — 1,700+ people across 21 offices combining strategy, design, engineering, consulting, and innovation, including Open Hand Studio, its award-winning public interest design practice.",
+    "Expo Pass": "An event tech platform that handles everything from registration to badge printing and onsite check-in — built to make life easier for event organizers.",
+    "Conlon Public Strategies": "A strategic advising firm helping mission-driven organizations strengthen communities and grow their impact — and generous supporter of the TEDxChicago VIP Reception.",
+    "J.P. Morgan": "With a shared commitment to strengthening communities and investing in people, we're grateful to Gabrielle Dubick and J.P. Morgan for partnering with us on our Speaker Workshop Dinner.",
+    "ABC Imaging": "Chicago's own ABC Imaging printed the We The People event booklet. For local printing needs: 161 W Harrison St, (312) 253-0040.",
+    "Teach For America": "A leadership development organization working alongside young people and communities toward a more just world — a network of 72,000+ teachers, tutors, and leaders expanding educational opportunity.",
+    "ER2 Image Group": "ER2 transforms big ideas into bold, memorable environments through design, fabrication, graphics, and installation — including our signature stage light boxes and the interactive wall in our Gallery.",
+    "Axelrod Consulting": "Rachel Axelrod, co-founder of TEDxChicago: “Our goal on day one was to bring the community together through ideas.”",
+    "Fabrik": "A network of social spaces designed to foster real-life connection, belonging, and community — Fabrik brought custom conversation cards to the TEDxChicago Gallery.",
+    "Adapted Chicago": "A Chicago-based creative production company specializing in authentic visual storytelling through film, photography, and design.",
+    "The Ori House": "Award-winning cinematic artist driven to create visual experiences in a way no one has seen before.",
+    "Beautiful Events": "Crafting unforgettable, meaningful experiences with meticulous attention to detail — including the Gallery's creative balloon displays and lighting for our pop-up activations.",
+    "MKODJ": "A skilled art curator and gallerist known for dynamic art experiences — curator of the artist experience at TEDxChicago 2024, 2025, and 2026.",
+    "Cherek Productions": "Chris is the mastermind behind our production and produces shows all over the world.",
+    "Silence Kills Design": "A full-stack strategic creative agency specializing in fostering brand growth for small, local businesses and startups in Chicago and across the United States.",
+    "The Vinyl Collectiv": "Where real music lovers meet IRL — thoughtfully curated and brought to life the TEDxChicago Listening Lounge pop-up.",
+    "The Heavy Rotation": "An album listening club — conversation through music — who co-created the TEDxChicago Listening Lounge pop-up.",
+    "1 Events / Playbook": "Modern, flexible spaces in the heart of Chicago — our venue partner for both the VIP Reception and the post-event Salon Panel + Workshop."
+  };
+
+  const plb = document.getElementById("partnerLightbox");
+  if (plb) {
+    const plbCard = plb.querySelector(".partner-lightbox-card");
+    const plbLogo = document.getElementById("plbLogo");
+    const plbImg = document.getElementById("plbImg");
+    const plbTier = document.getElementById("plbTier");
+    const plbName = document.getElementById("plbName");
+    const plbBlurb = document.getElementById("plbBlurb");
+    let plbLastFocused = null;
+
+    const closePlb = () => {
+      plb.classList.remove("is-open");
+      document.body.classList.remove("modal-open");
+      document.removeEventListener("keydown", onPlbKeydown);
+      setTimeout(() => { plb.hidden = true; }, 240);
+      if (plbLastFocused && plbLastFocused.focus) plbLastFocused.focus();
+    };
+    const onPlbKeydown = (e) => { if (e.key === "Escape") closePlb(); };
+    plb.querySelectorAll("[data-plb-close]").forEach((el) =>
+      el.addEventListener("click", closePlb)
+    );
+
+    const openPlb = (tile) => {
+      const img = tile.querySelector("img");
+      if (!img) return;
+      plbLastFocused = tile;
+      plbImg.src = img.src;
+      plbImg.alt = img.alt;
+      plbLogo.classList.toggle("is-light", tile.classList.contains("is-light"));
+      plbName.textContent = img.alt;
+      const tier = tile.closest(".partner-tier");
+      plbTier.textContent = tier ? tier.querySelector(".partner-tier-name").textContent : "";
+      const blurb = PARTNER_BLURBS[img.alt] || "";
+      plbBlurb.textContent = blurb;
+      plbBlurb.hidden = !blurb;
+      plb.hidden = false;
+      requestAnimationFrame(() => plb.classList.add("is-open"));
+      document.body.classList.add("modal-open");
+      plb.querySelector(".speaker-modal-close").focus();
+      document.addEventListener("keydown", onPlbKeydown);
+    };
+
+    document.querySelectorAll("#partners .partner-logo.is-filled").forEach((tile) => {
+      const img = tile.querySelector("img");
+      if (!img) return;
+      tile.dataset.name = img.alt;
+      tile.setAttribute("tabindex", "0");
+      tile.setAttribute("role", "button");
+      tile.setAttribute("aria-label", "About " + img.alt);
+      tile.addEventListener("click", () => openPlb(tile));
+      tile.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        e.preventDefault();
+        openPlb(tile);
+      });
+    });
+  }
+
   /* ── Speaker bio modal ─────────────────────────────────── */
   const speakerModal = document.getElementById("speakerModal");
   if (speakerModal) {

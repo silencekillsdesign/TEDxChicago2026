@@ -1414,6 +1414,89 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
 /* Logos extracted from print (white/dark art) sit on a light tile. */
 .partner-logo.is-light { background: #e9edf3; border-color: transparent; }
 
+/* Filled tiles are clickable (lightbox) and carry a hover tooltip. */
+.partner-logo.is-filled[data-name] { cursor: pointer; }
+.partner-logo.is-filled[data-name]::after {
+  content: attr(data-name);
+  position: absolute;
+  left: 50%;
+  top: -2.1rem;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--navy);
+  border: 1px solid rgba(171, 188, 207, 0.25);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  padding: 0.35rem 0.6rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 5;
+}
+.partner-logo.is-filled[data-name]:hover::after,
+.partner-logo.is-filled[data-name]:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Partner lightbox ──────────────────────────────────────── */
+.partner-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.24s ease;
+}
+.partner-lightbox.is-open { opacity: 1; }
+.partner-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 11, 20, 0.82);
+}
+.partner-lightbox-card {
+  position: relative;
+  width: min(100%, 480px);
+  background: var(--navy);
+  border: 1px solid rgba(171, 188, 207, 0.2);
+  border-top: 3px solid var(--red);
+  padding: 2rem;
+  transform: translateY(12px);
+  transition: transform 0.24s ease;
+}
+.partner-lightbox.is-open .partner-lightbox-card { transform: none; }
+.plb-logo {
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  border: 1px solid rgba(171, 188, 207, 0.12);
+  height: 150px;
+  margin-bottom: 1.25rem;
+}
+.plb-logo.is-light { background: #e9edf3; border-color: transparent; }
+.plb-logo img { max-width: 70%; max-height: 100px; object-fit: contain; }
+.plb-tier {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.35rem;
+}
+.plb-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 0.6rem;
+}
+.plb-blurb { font-size: 0.9rem; color: var(--sky); }
+
 /* Artist card Instagram handle */
 .artist-ig {
   display: inline-block;
