@@ -41,6 +41,11 @@
 
 html { scroll-behavior: smooth; }
 
+/* The hidden attribute must always win: several components (buttons,
+   modals, overlays) set their own display, which would otherwise
+   override the UA's [hidden]{display:none} and show them anyway. */
+#tedx-root [hidden] { display: none !important; }
+
 /* The scoped reset above no longer zeroes the browser's default 8px
    body margin, which left gutters around the embed. Safe globally —
    zero body margin is the norm on every host page incl. Squarespace. */
@@ -1469,7 +1474,6 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
 /* ── Partner lightbox ──────────────────────────────────────── */
 /* display:grid below would override the hidden attribute — without this
    the invisible overlay covers the page and swallows every click. */
-.partner-lightbox[hidden] { display: none; }
 .partner-lightbox {
   position: fixed;
   inset: 0;
@@ -1817,7 +1821,6 @@ body.modal-open { overflow: hidden; }
   place-items: center;
   padding: clamp(1rem, 4vw, 3rem);
 }
-.speaker-modal[hidden] { display: none; }
 
 .speaker-modal-backdrop {
   position: absolute;
@@ -1999,7 +2002,6 @@ body.modal-open { overflow: hidden; }
   font-size: 0.82rem;
   color: var(--sky);
 }
-.speaker-modal-formal[hidden] { display: none; }
 
 .speaker-modal-idea {
   margin-top: 1.25rem;
