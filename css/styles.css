@@ -1599,11 +1599,13 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
 .beyond-card > p:last-of-type { margin-bottom: 1.25rem; }
 
 /* Full-bleed header art (card has 1.75rem padding + 3px red top bar). */
+/* !important: Squarespace's code-block img rules (max-width/height)
+   outrank these on the live site and break the full-bleed band. */
 .beyond-img {
   display: block;
-  width: calc(100% + 3.5rem);
-  max-width: calc(100% + 3.5rem); /* beat the global img max-width cap */
-  height: 170px;                  /* equal header band on both cards */
+  width: calc(100% + 3.5rem) !important;
+  max-width: calc(100% + 3.5rem) !important;
+  height: 170px !important;       /* equal header band on both cards */
   object-fit: contain;
   background: #000;               /* screening art is black-on-black */
   margin: -1.75rem -1.75rem 1.25rem;
