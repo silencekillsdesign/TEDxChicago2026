@@ -415,7 +415,7 @@
      AND only once a stream URL is set here — so an empty URL can
      ship safely and be filled in day-of (push + jsDelivr purge,
      no Squarespace re-paste needed). */
-  const LIVESTREAM_URL = "";
+  const LIVESTREAM_URL = "https://www.tedxchicago.com/livestream";
   const livestreamBtn = document.getElementById("livestreamBtn");
   if (livestreamBtn && LIVESTREAM_URL) {
     const chi = new Date(
