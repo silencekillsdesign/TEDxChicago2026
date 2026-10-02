@@ -410,6 +410,23 @@
   };
   renderPerformerCards();
 
+  /* ── Event-day livestream button ───────────────────────────
+     Hidden in the markup; shown only on Oct 3, 2026 (Chicago time)
+     AND only once a stream URL is set here — so an empty URL can
+     ship safely and be filled in day-of (push + jsDelivr purge,
+     no Squarespace re-paste needed). */
+  const LIVESTREAM_URL = "";
+  const livestreamBtn = document.getElementById("livestreamBtn");
+  if (livestreamBtn && LIVESTREAM_URL) {
+    const chi = new Date(
+      new Date().toLocaleString("en-US", { timeZone: "America/Chicago" })
+    );
+    if (chi.getFullYear() === 2026 && chi.getMonth() === 9 && chi.getDate() === 3) {
+      livestreamBtn.href = LIVESTREAM_URL;
+      livestreamBtn.hidden = false;
+    }
+  }
+
   /* ── Partner tooltips + lightbox ───────────────────────────
      Tiles are static HTML; names come from each logo's alt text,
      blurbs (from the event booklet) live here. Tiles without a
