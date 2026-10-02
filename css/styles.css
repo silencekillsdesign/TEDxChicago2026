@@ -1180,7 +1180,11 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
   background: rgba(171, 188, 207, 0.3);
   cursor: pointer;
   transition: background 0.25s;
+  /* The visible dash is 4px tall — expand the touch target to ~44px
+     without changing the look. */
+  position: relative;
 }
+.qdot::before { content: ""; position: absolute; inset: -20px -8px; }
 .qdot.is-active { background: var(--red); }
 
 /* ── Performers ────────────────────────────────────────────── */
