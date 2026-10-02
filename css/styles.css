@@ -1467,6 +1467,9 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
 }
 
 /* ── Partner lightbox ──────────────────────────────────────── */
+/* display:grid below would override the hidden attribute — without this
+   the invisible overlay covers the page and swallows every click. */
+.partner-lightbox[hidden] { display: none; }
 .partner-lightbox {
   position: fixed;
   inset: 0;
