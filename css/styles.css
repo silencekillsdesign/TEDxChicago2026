@@ -1590,6 +1590,37 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
 }
 .beyond-card p:not(.beyond-when) { font-size: 0.9rem; }
 
+/* Full-bleed header art (card has 1.75rem padding + 3px red top bar). */
+.beyond-img {
+  display: block;
+  width: calc(100% + 3.5rem);
+  max-width: calc(100% + 3.5rem); /* beat the global img max-width cap */
+  height: auto;
+  margin: -1.75rem -1.75rem 1.25rem;
+}
+
+/* Address on its own line, clearly a map link. */
+.beyond-addr { margin-bottom: 0.8rem; }
+.beyond-addr a {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: rgba(230, 43, 30, 0.7);
+  text-underline-offset: 3px;
+}
+.beyond-addr a:hover { color: var(--red); }
+.beyond-addr .map-hint {
+  margin-left: 0.4rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.beyond-cta { margin-top: 1.25rem; }
+
 .partner-logo {
   aspect-ratio: 5 / 3;
   display: grid;
