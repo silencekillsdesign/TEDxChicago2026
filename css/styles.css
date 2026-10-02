@@ -1599,6 +1599,14 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
   margin: -1.75rem -1.75rem 1.25rem;
 }
 
+/* Logo-on-white variant of the card header (transparent logo art). */
+.beyond-img--logo {
+  background: #fff;
+  height: 110px;
+  object-fit: contain;
+  padding: 1.5rem 2rem;
+}
+
 /* Address on its own line, clearly a map link. */
 .beyond-addr { margin-bottom: 0.8rem; }
 .beyond-addr a {
