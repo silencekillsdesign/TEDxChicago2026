@@ -1569,6 +1569,8 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
   gap: 1.5rem;
 }
 @media (max-width: 860px) { .beyond-grid { grid-template-columns: 1fr; } }
+/* On a navy section the navy card needs ink for contrast. */
+.section-navy .beyond-card { background: var(--ink); }
 .beyond-card {
   display: flex;
   flex-direction: column;
