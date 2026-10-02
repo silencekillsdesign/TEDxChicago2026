@@ -1209,7 +1209,8 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
 
 /* Mobile: performer lineup scrolls horizontally with snap instead of stacking. */
 @media (max-width: 700px) {
-  #performerGrid {
+  #performerGrid,
+  #artistGrid {
     flex-wrap: nowrap;
     justify-content: flex-start;
     overflow-x: auto;
@@ -1218,8 +1219,10 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
     scrollbar-width: none;
     padding-bottom: 0.5rem;
   }
-  #performerGrid::-webkit-scrollbar { display: none; }
-  #performerGrid .performer-card {
+  #performerGrid::-webkit-scrollbar,
+  #artistGrid::-webkit-scrollbar { display: none; }
+  #performerGrid .performer-card,
+  #artistGrid .performer-card {
     flex: 0 0 min(78%, 300px);
     scroll-snap-align: center;
   }
