@@ -1765,26 +1765,47 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
 .section-involved .btn { margin-top: 2.25rem; }
 .section-involved { position: relative; overflow: hidden; }
 .section-involved .two-col > .col:first-child { position: relative; z-index: 1; }
-.involved-visual { display: grid; place-items: center; }
+/* Same treatment as .message-media, mirrored: photo bleeds to the
+   section's right edge at full height and fades into the ink. */
+.involved-visual {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 42vw;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to left, #000 40%, transparent 100%);
+  mask-image: linear-gradient(to left, #000 40%, transparent 100%);
+}
+.involved-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(7, 11, 20, 0.5);
+}
 .involved-visual img {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  max-height: 540px;
   object-fit: cover;
-  border: 1px solid rgba(171, 188, 207, 0.12);
 }
-/* Mobile/tablet: the photo becomes a faint full-section background. */
+/* Mobile/tablet: faint full-section background instead. */
 @media (max-width: 1024px) {
   .involved-visual {
-    position: absolute;
     inset: 0;
+    width: auto;
     z-index: 0;
-    pointer-events: none;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
+  .involved-visual::before { content: none; }
   /* Fade the img, not the container — the data-reveal animation
      sets the container's opacity to 1 and would cancel the faint. */
-  .involved-visual img { max-height: none; border: none; opacity: 0.14; }
+  .involved-visual img { opacity: 0.14; }
 }
 
 /* ── Footer ────────────────────────────────────────────────── */
