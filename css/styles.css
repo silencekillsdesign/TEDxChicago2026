@@ -1567,6 +1567,8 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
 }
 @media (max-width: 860px) { .beyond-grid { grid-template-columns: 1fr; } }
 .beyond-card {
+  display: flex;
+  flex-direction: column;
   background: var(--navy);
   border: 1px solid rgba(171, 188, 207, 0.12);
   border-top: 3px solid var(--red);
@@ -1589,21 +1591,22 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
   margin-bottom: 0.8rem;
 }
 .beyond-card p:not(.beyond-when) { font-size: 0.9rem; }
+.beyond-card > p:last-of-type { margin-bottom: 1.25rem; }
 
 /* Full-bleed header art (card has 1.75rem padding + 3px red top bar). */
 .beyond-img {
   display: block;
   width: calc(100% + 3.5rem);
   max-width: calc(100% + 3.5rem); /* beat the global img max-width cap */
-  height: auto;
+  height: 170px;                  /* equal header band on both cards */
+  object-fit: contain;
+  background: #000;               /* screening art is black-on-black */
   margin: -1.75rem -1.75rem 1.25rem;
 }
 
 /* Logo-on-white variant of the card header (transparent logo art). */
 .beyond-img--logo {
   background: #fff;
-  height: 110px;
-  object-fit: contain;
   padding: 1.5rem 2rem;
 }
 
@@ -1627,7 +1630,7 @@ a.tag-pill:hover, a.tag-pill:focus-visible { background: var(--red-deep); }
   color: var(--red);
 }
 
-.beyond-cta { margin-top: 1.25rem; }
+.beyond-cta { margin-top: auto; align-self: flex-start; }
 
 .partner-logo {
   aspect-ratio: 5 / 3;
